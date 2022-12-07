@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import DailyWeather from './DailyWeather';
-import Daily from './DailyWeather';
 
 const Weather = () => {
 	const [weatherData, setWeatherData] = useState('');
@@ -27,9 +26,21 @@ const Weather = () => {
 		<div>
 			<h1>Weather</h1>
 			{weatherData ? (
-				weatherData.list.slice(0, 5).map((detail, i) => {
-					// console.log(detail.main.feels_like);
-					return <DailyWeather key={i} dateNum={detail.dt} />
+				weatherData.list.slice(0, 6).map((details, i) => {
+					// console.log(details.weather[0].icon);
+					// console.log(weatherDetails.icon);
+					// console.log(details.main.temp_min);
+					console.log(details.dt_txt);
+					//3h毎の天気を持ってきている9-24
+					return (
+						<DailyWeather
+							key={i}
+							dateNum={details.dt}
+							dayIcon={`http://openweathermap.org/img/wn/${details.weather[0].icon}@2x.png`}
+							tempHigh={details.main.temp_max}
+							tempLow={details.main.temp_min}
+						/>
+					);
 				})
 			) : (
 				<h2>Loading...</h2>
