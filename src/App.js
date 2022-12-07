@@ -1,11 +1,14 @@
 import './App.css';
-import Weather from './Weather/Weather';
+// import UilReact from '@iconscout/react-unicons/icons/uil-react';
+import TopButton from './Components/TopButton';
+import Inputs from './Components/Inputs';
+// import Weather from './Components/Weather';
 
 function App() {
 	return (
-		<div className='App'>
-			<h1>Weather App</h1>
-			<Weather />
+		<div className='mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-400'>
+			<TopButton />
+			<Inputs />
 		</div>
 	);
 }
