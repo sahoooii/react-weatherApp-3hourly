@@ -8,7 +8,7 @@ const Inputs = () => {
 				<input
 					type='text'
 					placeholder='Search for the city...'
-					className='text-xl w-full font-light p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase'
+					className='text-xl font-light w-full p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase'
 				/>
 				<UilSearch
 					size={25}
