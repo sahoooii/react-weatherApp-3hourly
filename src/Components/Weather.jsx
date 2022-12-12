@@ -4,12 +4,13 @@ import DailyWeather from './DailyWeather';
 const Weather = () => {
 	const [weatherData, setWeatherData] = useState('');
 
-	const lon = -80.0;
-	const lat = 40.0;
+	const lon = -0.1257;
+	const lat = 51.5085;
 	const APIKey = 'afda9fe2cae870ff9ebda89a08e3aa2c';
 
 	useEffect(() => {
-		const API = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&exclude=minutely&appid=${APIKey}`;
+		// const API = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${APIKey}`;
+		const API = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${APIKey}`;
 
 		fetch(API)
 			.then((res) => res.json())
@@ -20,7 +21,11 @@ const Weather = () => {
 			.catch((err) => console.log(err));
 	}, []);
 
-	if (weatherData) console.log(weatherData);
+	if (weatherData)  {
+		console.log(weatherData);
+		console.log(weatherData.city.coord.lat);
+		// console.log(weatherData)
+	};
 
 	return (
 		<div>
@@ -30,7 +35,7 @@ const Weather = () => {
 					// console.log(details.weather[0].icon);
 					// console.log(weatherDetails.icon);
 					// console.log(details.main.temp_min);
-					console.log(details.dt_txt);
+					// console.log(details);
 					//3h毎の天気を持ってきている9-24
 					return (
 						<DailyWeather
