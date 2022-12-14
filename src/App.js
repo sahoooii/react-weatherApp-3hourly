@@ -5,9 +5,13 @@ import Inputs from './Components/Inputs';
 import TimeAndLocation from './Components/TimeAndLocation';
 import { TemperatureAndDetails } from './Components/TemperatureAndDetails';
 import Forecast from './Components/Forecast';
-import getFormattedWeatherData from './services/WeatherService';
-import Weather from './Components/Weather';
+import getFormattedWeatherData, {
+	formatForecastWeather,
+} from './services/WeatherService';
+// import Weather from './services/ForecastService';
 import { useEffect, useState } from 'react';
+import getFormattedThreeHoursWeather from './services/ForecastService';
+import ThreeHourWeather from './Components/ThreeHourWeather';
 
 function App() {
 	const { query, setQuery } = useState({ q: 'berlin' });
@@ -15,9 +19,12 @@ function App() {
 	const { weather, setWeather } = useState(null);
 
 	const fetchWeather = async () => {
-		const data = await getFormattedWeatherData({ q: 'london' });
-
+		const data = await getFormattedWeatherData({ q: 'tokyo' });
+		// formatForecastWeather();
 		// console.log(data);
+		//3hour add
+		const forecastData = await getFormattedThreeHoursWeather({ q: 'tokyo' });
+		// console.log(forecastData);
 	};
 	fetchWeather();
 
@@ -29,9 +36,10 @@ function App() {
 			<TimeAndLocation />
 			<TemperatureAndDetails />
 			<Forecast title='3 hour forecast' />
-			<Forecast title='Daily forecast' />
+			{/* <Forecast title='Daily forecast' /> */}
+			{/* <ThreeHourWeather /> */}
 
-			<Weather />
+			{/* <Weather /> */}
 		</div>
 	);
 }

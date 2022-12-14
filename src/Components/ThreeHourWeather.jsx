@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DailyWeather = ({ dateNum, dayIcon, tempHigh, tempLow }) => {
+const ThreeHourWeather = ({ dateNum, dayIcon, tempHigh, tempLow }) => {
 	// console.log(dayIcon);
 	dateNum = new Date(dateNum * 1000);
 	dateNum.getDay();
@@ -21,4 +21,4 @@ const DailyWeather = ({ dateNum, dayIcon, tempHigh, tempLow }) => {
 	);
 };
 
-export default DailyWeather;
+export default ThreeHourWeather;
