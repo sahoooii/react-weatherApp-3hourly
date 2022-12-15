@@ -1,6 +1,10 @@
 import React from 'react';
+import { formatForecastWeather } from '../services/ForecastService';
 
-const ThreeHourWeather = ({ dateNum, dayIcon, tempHigh, tempLow }) => {
+
+const ThreeHourWeather = ({
+	weather:{ dateNum, dayIcon, tempHigh, tempLow },
+}) => {
 	// console.log(dayIcon);
 	dateNum = new Date(dateNum * 1000);
 	dateNum.getDay();

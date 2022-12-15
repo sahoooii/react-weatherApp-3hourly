@@ -1,6 +1,7 @@
 import React from 'react';
 
-const TimeAndLocation = () => {
+const TimeAndLocation = ({ weather: detail }) => {
+	// console.log(detail.currentData.name);
 	return (
 		<div>
 			<div className='flex items-center justify-center my-6'>
@@ -10,7 +11,7 @@ const TimeAndLocation = () => {
 			</div>
 
 			<div className='flex items-center justify-center my-3'>
-				<p className='text-white text-3xl font-medium'>Berlin, DE</p>
+				<p className='text-white text-3xl font-medium'>{`${detail.currentData.name}, ${detail.currentData.country}`}</p>
 			</div>
 		</div>
 	);

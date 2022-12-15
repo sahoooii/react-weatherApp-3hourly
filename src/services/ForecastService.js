@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import ThreeHourWeather from '../Components/ThreeHourWeather';
 import WeatherService, {
 	getWeatherData,
@@ -66,19 +65,7 @@ const getFormattedThreeHoursWeather = async (searchParams) => {
 	).then(formatThreeHoursWeather);
 	// {timezone: 0, lat: 51.5085, lon: -0.1257}取得
 
-	// const formatForecastWeather = (data) => {
-	// 	let { timezone } = formattedThreeHourForecast;
-	// 	let threeHourly = data.list.slice(1, 6).map((details, i) => {
-	// 		return {
-	// 			dateNum: details.dt,
-	// 			dayIcon: iconUrlFromCode(details.weather[0].icon),
-	// 			tempHigh: details.main.temp_max,
-	// 			tempLow: details.main.temp_min,
-	// 		};
-	// 	});
-	// 	// console.log(threeHourly);
-	// 	return { threeHourly, timezone };
-	// };
+	// console.log(formattedThreeHourForecast); //lat, lon timezone
 
 	const { lat, lon } = formattedThreeHourForecast;
 
@@ -89,40 +76,17 @@ const getFormattedThreeHoursWeather = async (searchParams) => {
 		units: searchParams.units,
 	}).then(formatForecastWeather);
 
-	console.log({
-		...formattedForecastWeather,
-		...formattedThreeHourForecast,
-	});
+	// console.log(formattedForecastWeather); //list
+
+	// console.log({
+	// 	...formattedForecastWeather,
+	// 	...formattedThreeHourForecast,
+	// });
 	// data取得ok
 
-	return { ...formattedForecastWeather, ...formattedThreeHourForecast };
+	// return { ...formattedForecastWeather, ...formattedThreeHourForecast };
+	return [formattedForecastWeather, formattedThreeHourForecast];
 };
-
-// return (
-// 	<div>
-// 		<h1>Weather</h1>
-/* {data ? (
-				data.list.slice(0, 6).map((details, i) => {
-					// console.log(details.weather[0].icon);
-					// console.log(weatherDetails.icon);
-					// console.log(details.main.temp_min);
-					// console.log(details);
-					//3h毎の天気を持ってきている9-24
-					return (
-						<ThreeHourWeather
-							key={i}
-							dateNum={details.dt}
-							dayIcon={`http://openweathermap.org/img/wn/${details.weather[0].icon}@2x.png`}
-							tempHigh={details.main.temp_max}
-							tempLow={details.main.temp_min}
-						/>
-					);
-				})
-			) : (
-				<h2>Loading...</h2>
-			)} */
-// 	</div>
-// );
 
 export default getFormattedThreeHoursWeather;
 
