@@ -14,27 +14,23 @@ import getFormattedThreeHoursWeather from './services/ForecastService';
 import ThreeHourWeather from './Components/ThreeHourWeather';
 
 function App() {
-	const [query, setQuery] = useState({ q: 'berlin' });
+	const [query, setQuery] = useState({ q: 'tokyo' });
 	const [units, setUnits] = useState('metric'); //°C ?°F
 	const [weather, setWeather] = useState(null);
 	const [threeHourWeather, setThreeHourWeather] = useState(null);//for 3h
 
 	useEffect(() => {
 		const fetchWeather = async () => {
-			// const currentData = await getFormattedWeatherData({ q: 'tokyo' });
-			// //3hour add
-			// const forecastData = await getFormattedThreeHoursWeather({ q: 'tokyo' });
 			const currentData = await getFormattedWeatherData({ ...query, units });
 			// console.log(currentData);
-			//3hour add
+			//3hour weather
 			await getFormattedThreeHoursWeather({
 				...query,
 				units,
 			}).then((forecastData) => {
-				console.log(forecastData);//0=list 1=data
-				const allTheData = { ...forecastData[1], currentData };
+				console.log(forecastData);//0=list 1=data separated
+				const allTheData = { ...forecastData[1], currentData };//current+ lat lon timezone
 
-				// const allTheData = { ...currentData, ...forecastData };
 				// console.log(allTheData);
 				setWeather(allTheData);
 			});
