@@ -1,11 +1,14 @@
 import React from 'react';
-import { formatToLocalTime } from '../services/ForecastService';
+import {
+	formatToLocalTime,
+} from '../services/ForecastService';
 
 // const TimeAndLocation = ({ weather: detail }) => {
 const TimeAndLocation = ({ weather }) => {
+	// console.log(weather);
 	const {
 		currentData: { name, country, dt },
-		timezone,
+		timezoneInMinutes,
 	} = weather;
 
 	// console.log(formatToLocalTime(dt, timezone));
@@ -19,7 +22,7 @@ const TimeAndLocation = ({ weather }) => {
 		<div>
 			<div className='flex items-center justify-center my-6'>
 				<p className='text-white text-xl font-extralight'>
-					{formatToLocalTime(dt, timezone)}
+					{formatToLocalTime(dt, timezoneInMinutes)}
 					{/* Wednesday, 31 May 2022 | Local time 12: 45 PM */}
 				</p>
 			</div>

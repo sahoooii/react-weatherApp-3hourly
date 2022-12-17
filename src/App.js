@@ -28,7 +28,7 @@ function App() {
 				...query,
 				units,
 			}).then((forecastData) => {
-				console.log(forecastData);//0=list 1=data separated
+				// console.log(forecastData);//0=list 1=data separated
 				const allTheData = { ...forecastData[1], currentData };//current+ lat lon timezone
 
 				// console.log(allTheData);

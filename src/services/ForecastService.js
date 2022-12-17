@@ -1,46 +1,37 @@
 import { DateTime } from 'luxon';
 import { getWeatherData, iconUrlFromCode } from './WeatherService';
 
-// const lon = -0.1257;
-// const lat = 51.5085;
-// const APIKey = 'afda9fe2cae870ff9ebda89a08e3aa2c';
-
-// useEffect(() => {
-// 	// const API = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${APIKey}`;
-// 	const API = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${APIKey}`;
-
-// 	fetch(API)
-// 		.then((res) => res.json())
-// 		.then((data) => {
-// 			// console.log(data);
-// 			setWeatherData(data);
-// 		})
-// 		.catch((err) => console.log(err));
-// }, []);
-//listから必要なものだけ取得 cityからtimezone
+//dataのcityからtimezoneだけ取得
 const formatForecastWeather = (data) => {
 	const { city } = data;
 	const { timezone } = city;
 
-	let threeHourly = data.list.slice(0, 5).map((details, i) => {
-		// console.log(details);
-		let dtToDate = details.dt;
-		let dateTxt = details.dt_txt;
-		// console.log(formatToLocalTime(dtToDate));
+	//timezoneを60で割ってminにする
+	const timezoneInMinutes = timezone / 60;
 
-		// console.log(dateTxt);
-		// console.log(formatToLocalTime(details.dt, timezone, 'dd LLL yyyy'));
+	//current time以降の5つのdata取得
+	let threeHourly = data.list.slice(0, 5).map((details, i) => {
+		let dtToDate = details.dt;
+
 		return {
-			time: DateTime.now(),
-			date: formatToLocalTime(details.dt, timezone, 'dd LLL yyyy'),
-			dateTime: formatToLocalTime(dtToDate, timezone, 'hh:mm a'),
+			id: i,
+			date: formatToLocalTime(dtToDate, timezoneInMinutes, 'dd LLL yyyy'),
+			dateTime: formatToLocalTime(dtToDate, timezoneInMinutes, 'hh:mm a'),
 			dayIcon: iconUrlFromCode(details.weather[0].icon),
 			tempHigh: details.main.temp_max,
 			tempLow: details.main.temp_min,
 		};
 	});
+	// console.log(threeHourly);
 	return threeHourly;
 };
+
+//format= Wednesday, 31 May 2022 | Local time 12: 45 PM
+const formatToLocalTime = (
+	secs,
+	zone,
+	format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
+) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
 //cityの中からtimezone, lat, lon取得
 const formatThreeHoursWeather = (data) => {
@@ -50,7 +41,9 @@ const formatThreeHoursWeather = (data) => {
 		coord: { lat, lon },
 	} = city;
 
-	return { timezone, lat, lon };
+	const timezoneInMinutes = timezone / 60;
+
+	return { timezoneInMinutes, lat, lon };
 };
 
 const getFormattedThreeHoursWeather = async (searchParams) => {
@@ -58,9 +51,7 @@ const getFormattedThreeHoursWeather = async (searchParams) => {
 		'forecast',
 		searchParams
 	).then(formatThreeHoursWeather);
-	// { lat: 51.5085, lon: -0.1257}取得
-
-	// console.log(formattedThreeHourForecast); //lat, lon timezone
+	// { lat, lon, timezoneInMinutes }取得
 
 	const { lat, lon } = formattedThreeHourForecast;
 
@@ -69,21 +60,13 @@ const getFormattedThreeHoursWeather = async (searchParams) => {
 		lon,
 		units: searchParams.units,
 	}).then(formatForecastWeather);
+	//id, date, dateTime,dayIcon, tempHigh,mim取得
 
 	// console.log(formattedForecastWeather); //formatされたlist
 
-	// console.log([formattedForecastWeather, formattedThreeHourForecast]);
-
-	// return { ...formattedForecastWeather, ...formattedThreeHourForecast };
+	//formatされたlist + lat, lon, timezoneInMinutes
 	return [formattedForecastWeather, formattedThreeHourForecast];
 };
-
-//format= Wednesday, 31 May 2022 | Local time 12: 45 PM
-const formatToLocalTime = (
-	secs,
-	zone,
-	format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
-) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
 export default getFormattedThreeHoursWeather;
 
