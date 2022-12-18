@@ -22,7 +22,7 @@ const formatForecastWeather = (data) => {
 			tempLow: details.main.temp_min,
 		};
 	});
-	// console.log(threeHourly);
+
 	return threeHourly;
 };
 
@@ -47,23 +47,24 @@ const formatThreeHoursWeather = (data) => {
 };
 
 const getFormattedThreeHoursWeather = async (searchParams) => {
+	// { lat, lon, timezoneInMinutes }取得
 	const formattedThreeHourForecast = await getWeatherData(
 		'forecast',
 		searchParams
 	).then(formatThreeHoursWeather);
-	// { lat, lon, timezoneInMinutes }取得
 
 	const { lat, lon } = formattedThreeHourForecast;
 
+	//id, date, dateTime,dayIcon, tempHigh,mim取得
 	const formattedForecastWeather = await getWeatherData('forecast', {
 		lat,
 		lon,
 		units: searchParams.units,
 	}).then(formatForecastWeather);
-	//id, date, dateTime,dayIcon, tempHigh,mim取得
 
-	// console.log(formattedForecastWeather); //formatされたlist
-
+	// console.log([formattedForecastWeather, formattedThreeHourForecast]); //formatされたlist
+	// console.log(formattedThreeHourForecast);
+	// console.log(formattedForecastWeather);
 	//formatされたlist + lat, lon, timezoneInMinutes
 	return [formattedForecastWeather, formattedThreeHourForecast];
 };

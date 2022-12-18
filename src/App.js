@@ -29,9 +29,10 @@ function App() {
 				units,
 			}).then((forecastData) => {
 				// console.log(forecastData);//0=list 1=data separated
-				const allTheData = { ...forecastData[1], currentData };//current+ lat lon timezone
+				//currentDataに...をつけて一つの配列に
+				const allTheData = { ...forecastData[1], ...currentData };//current+ lat lon timezone
 
-				// console.log(allTheData);
+				console.log(allTheData);
 				setWeather(allTheData);
 			});
 		};
