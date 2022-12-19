@@ -12,14 +12,13 @@ const formatForecastWeather = (data) => {
 	//current time以降の5つのdata取得
 	let threeHourly = data.list.slice(0, 5).map((details, i) => {
 		let dtToDate = details.dt;
-
+		
 		return {
 			id: i,
 			date: formatToLocalTime(dtToDate, timezoneInMinutes, 'dd LLL yyyy'),
 			dateTime: formatToLocalTime(dtToDate, timezoneInMinutes, 'hh:mm a'),
 			dayIcon: iconUrlFromCode(details.weather[0].icon),
-			tempHigh: details.main.temp_max,
-			tempLow: details.main.temp_min,
+			temp: details.main.temp,
 		};
 	});
 

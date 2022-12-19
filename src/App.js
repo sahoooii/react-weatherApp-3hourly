@@ -11,7 +11,6 @@ import getFormattedWeatherData, {
 // import Weather from './services/ForecastService';
 import { useEffect, useState } from 'react';
 import getFormattedThreeHoursWeather from './services/ForecastService';
-import ThreeHourWeather from './Components/ThreeHourWeather';
 
 function App() {
 	const [query, setQuery] = useState({ q: 'tokyo' });
@@ -30,9 +29,10 @@ function App() {
 			}).then((forecastData) => {
 				// console.log({ ...forecastData[1], ...currentData });//0=list 1=data separated
 				const allTheData = { ...forecastData[1], ...currentData }; //current+ lat lon timezone
-
 				// console.log(allTheData);
 				setWeather(allTheData);
+
+				setThreeHourWeather(forecastData[0]);
 			});
 		};
 
@@ -47,14 +47,12 @@ function App() {
 				<>
 					<TimeAndLocation weather={weather} />
 					<TemperatureAndDetails weather={weather} />
-					<Forecast title='3 hour forecast' />
+					<Forecast
+						title='3 hour forecast'
+						threeHourWeather={threeHourWeather}
+					/>
 				</>
 			)}
-
-			{/* <Forecast title='Daily forecast' /> */}
-			{/* <ThreeHourWeather weather={weather} /> */}
-
-			{/* <Weather /> */}
 		</div>
 	);
 }
