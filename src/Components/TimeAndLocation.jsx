@@ -2,9 +2,10 @@ import React from 'react';
 import { formatToLocalTime } from '../services/ForecastService';
 
 // const TimeAndLocation = ({ weather: detail }) => {
-const TimeAndLocation = ({ weather }) => {
-	// console.log(weather);
-	const { name, country, dt, timezoneInMinutes } = weather;
+const TimeAndLocation = ({
+	weather: { name, country, dt, timezoneInMinutes },
+}) => {
+	// const { name, country, dt, timezoneInMinutes } = weather;
 
 	return (
 		<div>

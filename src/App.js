@@ -17,7 +17,7 @@ function App() {
 	const [query, setQuery] = useState({ q: 'tokyo' });
 	const [units, setUnits] = useState('metric'); //°C ?°F
 	const [weather, setWeather] = useState(null);
-	const [threeHourWeather, setThreeHourWeather] = useState(null);//for 3h
+	const [threeHourWeather, setThreeHourWeather] = useState(null); //for 3h forecastData[0]=listを入れていく
 
 	useEffect(() => {
 		const fetchWeather = async () => {
@@ -28,11 +28,10 @@ function App() {
 				...query,
 				units,
 			}).then((forecastData) => {
-				// console.log(forecastData);//0=list 1=data separated
-				//currentDataに...をつけて一つの配列に
-				const allTheData = { ...forecastData[1], ...currentData };//current+ lat lon timezone
+				// console.log({ ...forecastData[1], ...currentData });//0=list 1=data separated
+				const allTheData = { ...forecastData[1], ...currentData }; //current+ lat lon timezone
 
-				console.log(allTheData);
+				// console.log(allTheData);
 				setWeather(allTheData);
 			});
 		};
@@ -47,7 +46,7 @@ function App() {
 			{weather && (
 				<>
 					<TimeAndLocation weather={weather} />
-					<TemperatureAndDetails />
+					<TemperatureAndDetails weather={weather} />
 					<Forecast title='3 hour forecast' />
 				</>
 			)}

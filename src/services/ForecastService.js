@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import { getWeatherData, iconUrlFromCode } from './WeatherService';
 
-//dataのcityからtimezoneだけ取得
+//dataのcityからtimezoneだけ取得してdate,tempをformat
 const formatForecastWeather = (data) => {
 	const { city } = data;
 	const { timezone } = city;

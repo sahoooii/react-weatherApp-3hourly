@@ -1,7 +1,7 @@
 const API_KEY = 'afda9fe2cae870ff9ebda89a08e3aa2c';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
-// infoType=onecalll ? weather
+// infoType=onecalll ? weather ? forecast
 //searchParams= cityName ? lat ? lod
 const getWeatherData = (infoType, searchParams) => {
 	const url = new URL(BASE_URL + '/' + infoType);
@@ -49,7 +49,6 @@ const getFormattedWeatherData = async (searchParams) => {
 		searchParams
 	).then(formatCurrentWeather);
 
-	// const array = {...formattedCurrentWeather, ...formattedForecastWeather};
 	// console.log(formattedCurrentWeather);
 	return formattedCurrentWeather;
 };
@@ -57,7 +56,7 @@ const getFormattedWeatherData = async (searchParams) => {
 const iconUrlFromCode = (icon) =>
 	`http://openweathermap.org/img/wn/${icon}@2x.png`;
 
+	
 export default getFormattedWeatherData;
 
-// export { formatToLocalTime, iconUrlFromCode };
 export { iconUrlFromCode, getWeatherData };
