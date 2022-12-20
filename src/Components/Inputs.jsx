@@ -22,6 +22,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		}
 	};
 
+	//metric or imperial
 	const handleUnitsChange = (e) => {
 		const selectedUnit = e.currentTarget.name;
 		if (units !== selectedUnit) {
