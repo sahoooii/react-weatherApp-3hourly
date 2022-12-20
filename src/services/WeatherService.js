@@ -56,7 +56,7 @@ const getFormattedWeatherData = async (searchParams) => {
 const iconUrlFromCode = (icon) =>
 	`http://openweathermap.org/img/wn/${icon}@2x.png`;
 
-	
+
 export default getFormattedWeatherData;
 
 export { iconUrlFromCode, getWeatherData };

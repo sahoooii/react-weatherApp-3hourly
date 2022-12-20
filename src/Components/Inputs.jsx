@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 const Inputs = ({ setQuery, units, setUnits }) => {
 	const [city, setCity] = useState('');
+	const [changedC, setChangedC] = useState(false);
+	const [changedF, setChangedF] = useState(true);
 
 	const handleSearchClick = () => {
 		if (city !== '') {
@@ -30,6 +32,16 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		}
 	};
 
+	//onClick °C ? °F
+	const changeColorToggle = () => {
+		setChangedC(!changedC);
+		setChangedF(!changedF);
+	};
+
+	const changeMph = () => {
+		return <span className='font-medium ml-1'>m/s</span>;
+	};
+
 	return (
 		<div className='flex flex-row justify-center my-6'>
 			<div className='flex flex-row w-3/4 items-center justify-center space-x-4'>
@@ -54,16 +66,30 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 				<div className='flex flex-row w-1/4 items-center justify-center'>
 					<button
 						name='metric'
-						className='text-xl text-white font-light transition ease-out hover:scale-125'
-						onClick={handleUnitsChange}
+						className={
+							changedC
+								? 'text-xl text-white font-light transition ease-out hover:scale-125'
+								: 'text-3xl font-bold text-white'
+						}
+						onClick={(e) => {
+							handleUnitsChange(e);
+							changeColorToggle();
+						}}
 					>
 						°C
 					</button>
 					<p className='text-xl text-white mx-1'>|</p>
 					<button
 						name='imperial'
-						className='text-xl text-white font-light transition ease-out hover:scale-125'
-						onClick={handleUnitsChange}
+						className={
+							changedF
+								? 'text-xl text-white font-light transition ease-out hover:scale-125'
+								: 'text-3xl font-bold text-white'
+						}
+						onClick={(e) => {
+							handleUnitsChange(e);
+							changeColorToggle();
+						}}
 					>
 						°F
 					</button>
