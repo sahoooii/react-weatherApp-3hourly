@@ -3,7 +3,7 @@ import React from 'react';
 const Forecast = ({ title, threeHourWeather }) => {
 	// console.log(threeHourWeather);
 	return (
-		<div>
+		<div className='mb-6'>
 			<div className='flex items-center justify-start mt-6'>
 				<p className='text-white font-medium uppercase'>{title}</p>
 			</div>

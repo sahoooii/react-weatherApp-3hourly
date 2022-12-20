@@ -49,6 +49,7 @@ export const TemperatureAndDetails = ({
 						<UilWind size={18} className='mr-1' />
 						Wind:
 						<span className='font-medium ml-1'>{`${speed.toFixed()} m/s`}</span>
+						{/* mph */}
 					</div>
 				</div>
 			</div>

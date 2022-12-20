@@ -5,10 +5,7 @@ import Inputs from './Components/Inputs';
 import TimeAndLocation from './Components/TimeAndLocation';
 import { TemperatureAndDetails } from './Components/TemperatureAndDetails';
 import Forecast from './Components/Forecast';
-import getFormattedWeatherData, {
-	formatForecastWeather,
-} from './services/WeatherService';
-// import Weather from './services/ForecastService';
+import getFormattedWeatherData from './services/WeatherService';
 import { useEffect, useState } from 'react';
 import getFormattedThreeHoursWeather from './services/ForecastService';
 
@@ -39,10 +36,28 @@ function App() {
 		fetchWeather();
 	}, [query, units]);
 
+	const formatBackgroundColor = () => {
+		//default color
+		if (!weather) {
+			return 'from-cyan-700 to-blue-700';
+		}
+
+		const range = units === 'metric' ? 25 : 77;
+
+		if (weather.temp < range) {
+			return 'from-cyan-700 to-blue-700';
+		}
+
+		return 'from-yellow-700 to-orange-700';
+	};
+
 	return (
-		<div className='mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-cyan-700 to-blue-700 h-fit shadow-xl shadow-gray-400'>
-			<TopButton />
-			<Inputs />
+		<div
+			className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackgroundColor()}`}
+		>
+			<TopButton setQuery={setQuery} />
+			<Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
+
 			{weather && (
 				<>
 					<TimeAndLocation weather={weather} />
