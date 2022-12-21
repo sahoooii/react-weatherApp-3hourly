@@ -1,5 +1,4 @@
 import './App.css';
-// import UilReact from '@iconscout/react-unicons/icons/uil-react';
 import TopButton from './Components/TopButton';
 import Inputs from './Components/Inputs';
 import TimeAndLocation from './Components/TimeAndLocation';
@@ -26,7 +25,6 @@ function App() {
 			}).then((forecastData) => {
 				// console.log({ ...forecastData[1], ...currentData });//0=list 1=data separated
 				const allTheData = { ...forecastData[1], ...currentData }; //current+ lat lon timezone
-				// console.log(allTheData);
 				setWeather(allTheData);
 
 				setThreeHourWeather(forecastData[0]);
@@ -47,7 +45,6 @@ function App() {
 		if (weather.temp < range) {
 			return 'from-cyan-700 to-blue-700';
 		}
-
 		return 'from-yellow-700 to-orange-700';
 	};
 
