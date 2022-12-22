@@ -40,10 +40,6 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		setChangedF(!changedF);
 	};
 
-	// const changeMph = () => {
-	// 	return <span className='font-medium ml-1'>m/s</span>;
-	// };
-
 	return (
 		<div className='flex flex-row justify-center my-6'>
 			<div className='flex flex-row w-3/4 items-center justify-center space-x-4'>

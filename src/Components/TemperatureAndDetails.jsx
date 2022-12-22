@@ -23,6 +23,7 @@ export const TemperatureAndDetails = ({
 		feels_like,
 		timezoneInMinutes,
 	},
+	units,
 }) => {
 	return (
 		<div>
@@ -48,8 +49,9 @@ export const TemperatureAndDetails = ({
 					<div className='flex font-light text-sm items-center justify-center'>
 						<UilWind size={18} className='mr-1' />
 						Wind:
-						<span className='font-medium ml-1'>{`${speed.toFixed()} m/s`}</span>
-						{/* mph */}
+						<span className='font-medium ml-1'>
+							{`${speed.toFixed()} ${units === 'metric' ? 'm/s' : 'mph'}`}
+						</span>
 					</div>
 				</div>
 			</div>
