@@ -12,7 +12,7 @@ const formatForecastWeather = (data) => {
 	//current time以降の5つのdata取得
 	let threeHourly = data.list.slice(0, 5).map((details, i) => {
 		let dtToDate = details.dt;
-		
+
 		return {
 			id: i,
 			date: formatToLocalTime(dtToDate, timezoneInMinutes, 'dd LLL yyyy'),
@@ -62,8 +62,6 @@ const getFormattedThreeHoursWeather = async (searchParams) => {
 	}).then(formatForecastWeather);
 
 	// console.log([formattedForecastWeather, formattedThreeHourForecast]); //formatされたlist
-	// console.log(formattedThreeHourForecast);
-	// console.log(formattedForecastWeather);
 	//formatされたlist + lat, lon, timezoneInMinutes
 	return [formattedForecastWeather, formattedThreeHourForecast];
 };

@@ -11,6 +11,8 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		if (city !== '') {
 			setQuery({ q: city });
 		}
+		//入力後input空に
+		setCity('')
 	};
 
 	const handleCurrentLocationClick = () => {
@@ -33,13 +35,9 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	};
 
 	//onClick °C ? °F
-	const changeColorToggle = () => {
+	const changeFontToggle = () => {
 		setChangedC(!changedC);
 		setChangedF(!changedF);
-	};
-
-	const changeMph = () => {
-		return <span className='font-medium ml-1'>m/s</span>;
 	};
 
 	return (
@@ -73,7 +71,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 						}
 						onClick={(e) => {
 							handleUnitsChange(e);
-							changeColorToggle();
+							changeFontToggle();
 						}}
 					>
 						°C
@@ -88,7 +86,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 						}
 						onClick={(e) => {
 							handleUnitsChange(e);
-							changeColorToggle();
+							changeFontToggle();
 						}}
 					>
 						°F
