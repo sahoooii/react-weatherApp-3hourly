@@ -9,10 +9,12 @@ const Forecast = ({ title, threeHourWeather }) => {
 			</div>
 			<hr className='my-2' />
 
-			<div className='flex items-center justify-between text-white'>
+			<div className='flex items-center justify-evenly md:justify-between space-x-5 text-white'>
 				{threeHourWeather.map((weather) => (
 					<div className='flex flex-col items-center' key={weather.id}>
-						<p className='font-light text-white'>{weather.dateTime}</p>
+						<p className='font-light text-white text-center'>
+							{weather.dateTime}
+						</p>
 						<img
 							src={weather.dayIcon}
 							alt='weather_icon'
