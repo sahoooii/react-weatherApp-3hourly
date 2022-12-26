@@ -10,14 +10,14 @@ const TimeAndLocation = ({
 	return (
 		<div>
 			<div className='flex items-center justify-center my-6'>
-				<p className='text-white text-xl font-extralight'>
+				<p className='text-white md:text-xl font-extralight text-center'>
 					{formatToLocalTime(dt, timezoneInMinutes)}
 					{/* Wednesday, 31 May 2022 | Local time 12: 45 PM */}
 				</p>
 			</div>
 
 			<div className='flex items-center justify-center my-3'>
-				<p className='text-white text-3xl font-medium'>{`${name}, ${country}`}</p>
+				<p className='text-white text-2xl text-center md:text-3xl font-medium'>{`${name}, ${country}`}</p>
 			</div>
 		</div>
 	);
