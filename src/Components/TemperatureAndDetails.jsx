@@ -62,7 +62,7 @@ export const TemperatureAndDetails = ({
 				</div>
 			</div>
 
-			<div className='flex flex-row items-center justify-center space-x-3 md:space-x-2 text-white text-sm py-3'>
+			<div className='flex flex-row items-center justify-center  md:space-x-2 text-white text-sm pt-2'>
 				<p className='font-light text-center'>
 					Rise:{' '}
 					<span className='font-sm md:font-medium ml-1'>
@@ -70,7 +70,7 @@ export const TemperatureAndDetails = ({
 					</span>
 				</p>
 				<UilSunset />
-				<p className='font-light'>|</p>
+				<p className='font-light ml-1'>|</p>
 				<p className='font-light text-center'>
 					Set:{' '}
 					<span className='font-medium ml-1'>
@@ -79,13 +79,13 @@ export const TemperatureAndDetails = ({
 					</span>
 				</p>
 				<UilSun />
-				<p className='font-light'>|</p>
+				<p className='font-light  ml-1'>|</p>
 				<p className='font-light text-center '>
 					High:{' '}
 					<span className='font-medium ml-1'>{`${temp_max.toFixed()}°`}</span>
 				</p>
 				<UilSun />
-				<p className='font-light'>|</p>
+				<p className='font-light ml-1'>|</p>
 				<p className='font-light text-center'>
 					Low:{' '}
 					<span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
