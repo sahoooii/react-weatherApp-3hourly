@@ -1,4 +1,4 @@
-const API_KEY = 'afda9fe2cae870ff9ebda89a08e3aa2c';
+const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
 // infoType=onecalll ? weather ? forecast
@@ -55,7 +55,6 @@ const getFormattedWeatherData = async (searchParams) => {
 
 const iconUrlFromCode = (icon) =>
 	`http://openweathermap.org/img/wn/${icon}@2x.png`;
-
 
 export default getFormattedWeatherData;
 

@@ -29,7 +29,7 @@ const formatForecastWeather = (data) => {
 const formatToLocalTime = (
 	secs,
 	zone,
-	format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a"
+	format = "cccc, dd LLL yyyy' | 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
 //cityの中からtimezone, lat, lon取得

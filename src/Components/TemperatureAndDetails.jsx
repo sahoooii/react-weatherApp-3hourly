@@ -38,14 +38,18 @@ export const TemperatureAndDetails = ({
 						alt='weather_icon'
 						className='w-20 md:mr-8'
 					/>
-					<p className='text-5xl'>{`${temp.toFixed()}°`}</p>
+					<p className='text-5xl'>{`${temp.toFixed()} °${
+						units === 'metric' ? 'C' : 'F'
+					}`}</p>{' '}
 				</div>
 
 				<div className='md:flex md:flex-col space-y-2'>
 					<div className='flex font-light text-sm items-center justify-center'>
 						<UilTemperature size={18} className='mr-1' />
 						Real feel:
-						<span className='font-medium ml-1'>{`${feels_like.toFixed()}°`}</span>
+						<span className='font-medium ml-1'>{`${feels_like.toFixed()}°${
+							units === 'metric' ? 'C' : 'F'
+						}`}</span>
 					</div>
 					<div className='flex font-light text-sm items-center justify-center'>
 						<UilTear size={18} className='mr-1' />
@@ -62,7 +66,7 @@ export const TemperatureAndDetails = ({
 				</div>
 			</div>
 
-			<div className='flex flex-row items-center justify-center space-x-3 md:space-x-2 text-white text-sm py-3'>
+			<div className='flex flex-row items-center justify-center  md:space-x-2 text-white text-sm pt-2'>
 				<p className='font-light text-center'>
 					Rise:{' '}
 					<span className='font-sm md:font-medium ml-1'>
@@ -70,7 +74,7 @@ export const TemperatureAndDetails = ({
 					</span>
 				</p>
 				<UilSunset />
-				<p className='font-light'>|</p>
+				<p className='font-light ml-1'>|</p>
 				<p className='font-light text-center'>
 					Set:{' '}
 					<span className='font-medium ml-1'>
@@ -79,13 +83,13 @@ export const TemperatureAndDetails = ({
 					</span>
 				</p>
 				<UilSun />
-				<p className='font-light'>|</p>
+				<p className='font-light  ml-1'>|</p>
 				<p className='font-light text-center '>
 					High:{' '}
 					<span className='font-medium ml-1'>{`${temp_max.toFixed()}°`}</span>
 				</p>
 				<UilSun />
-				<p className='font-light'>|</p>
+				<p className='font-light ml-1'>|</p>
 				<p className='font-light text-center'>
 					Low:{' '}
 					<span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
