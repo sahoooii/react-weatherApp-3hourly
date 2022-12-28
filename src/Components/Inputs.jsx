@@ -42,7 +42,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 
 	return (
 		<div className='flex flex-row justify-center my-6'>
-			<div className='md:flex md:flex-row md:w-3/4 items-center justify-center space-x-2'>
+			<div className='flex flex-row md:w-3/4 items-center justify-center space-x-2 md:space-x-4'>
 				<input
 					value={city}
 					onChange={(e) => setCity(e.currentTarget.value)}
@@ -50,51 +50,52 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 					placeholder='Search for the city...'
 					className='text-xl font-light md:w-full p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase'
 				/>
-				<div className='flex flex-row mt-2 items-center justify-between'>
-					<UilSearch
-						size={25}
-						className='text-white cursor-pointer transition ease-out hover:scale-125'
-						onClick={handleSearchClick}
-					/>
-					<UilLocationPoint
-						size={25}
-						className='text-white cursor-pointer transition ease-out hover:scale-125'
-						onClick={handleCurrentLocationClick}
-					/>
-
-					<div className='flex flex-row md:w-1/4 items-center justify-center md:ml-2'>
-						<button
-							name='metric'
-							className={
-								changedC
-									? 'text-xl text-white font-light transition ease-out hover:scale-125'
-									: 'text-3xl font-bold text-white'
-							}
-							onClick={(e) => {
-								handleUnitsChange(e);
-								changeFontToggle();
-							}}
-						>
-							°C
-						</button>
-						<p className='text-xl text-white mx-1'>|</p>
-						<button
-							name='imperial'
-							className={
-								changedF
-									? 'text-xl text-white font-light transition ease-out hover:scale-125'
-									: 'text-3xl font-bold text-white'
-							}
-							onClick={(e) => {
-								handleUnitsChange(e);
-								changeFontToggle();
-							}}
-						>
-							°F
-						</button>
-					</div>
-				</div>
+				{/* <div className='flex flex-row mt-2 items-center justify-between'> */}
+				<UilSearch
+					size={20}
+					className='text-white cursor-pointer transition ease-out hover:scale-125'
+					onClick={handleSearchClick}
+				/>
+				<UilLocationPoint
+					size={20}
+					className='text-white cursor-pointer transition ease-out hover:scale-125'
+					onClick={handleCurrentLocationClick}
+				/>
 			</div>
+
+			<div className='flex flex-row md:w-1/4 items-center justify-center ml-2'>
+				<button
+					name='metric'
+					className={
+						changedC
+							? 'text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
+							: 'text-2xl md:text-3xl font-bold text-white'
+					}
+					onClick={(e) => {
+						handleUnitsChange(e);
+						changeFontToggle();
+					}}
+				>
+					°C
+				</button>
+				<p className='text-xl text-white mx-1'>|</p>
+				<button
+					name='imperial'
+					className={
+						changedF
+							? 'text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
+							: 'text-2xl md:text-3xl font-bold text-white'
+					}
+					onClick={(e) => {
+						handleUnitsChange(e);
+						changeFontToggle();
+					}}
+				>
+					°F
+				</button>
+			</div>
+			{/* </div> */}
+			{/* </div> */}
 		</div>
 	);
 };

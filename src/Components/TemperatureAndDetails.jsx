@@ -38,14 +38,18 @@ export const TemperatureAndDetails = ({
 						alt='weather_icon'
 						className='w-20 md:mr-8'
 					/>
-					<p className='text-5xl'>{`${temp.toFixed()}°`}</p>
+					<p className='text-5xl'>{`${temp.toFixed()} °${
+						units === 'metric' ? 'C' : 'F'
+					}`}</p>{' '}
 				</div>
 
 				<div className='md:flex md:flex-col space-y-2'>
 					<div className='flex font-light text-sm items-center justify-center'>
 						<UilTemperature size={18} className='mr-1' />
 						Real feel:
-						<span className='font-medium ml-1'>{`${feels_like.toFixed()}°`}</span>
+						<span className='font-medium ml-1'>{`${feels_like.toFixed()}°${
+							units === 'metric' ? 'C' : 'F'
+						}`}</span>
 					</div>
 					<div className='flex font-light text-sm items-center justify-center'>
 						<UilTear size={18} className='mr-1' />
