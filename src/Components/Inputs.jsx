@@ -5,7 +5,7 @@ import { useState } from 'react';
 const Inputs = ({ setQuery, units, setUnits }) => {
 	const [city, setCity] = useState('');
 	const [changedC, setChangedC] = useState(false);
-	const [changedF, setChangedF] = useState(true);
+	// const [changedF, setChangedF] = useState(true);
 
 	const handleSearchClick = () => {
 		if (city !== '') {
@@ -37,7 +37,6 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	//onClick °C ? °F
 	const changeFontToggle = () => {
 		setChangedC(!changedC);
-		setChangedF(!changedF);
 	};
 
 	return (
@@ -50,7 +49,6 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 					placeholder='Search for the city...'
 					className='text-xl font-light md:w-full p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase'
 				/>
-				{/* <div className='flex flex-row mt-2 items-center justify-between'> */}
 				<UilSearch
 					size={20}
 					className='text-white cursor-pointer transition ease-out hover:scale-125'
@@ -64,38 +62,41 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 			</div>
 
 			<div className='flex flex-row md:w-1/4 items-center justify-center ml-2'>
-				<button
-					name='metric'
-					className={
-						changedC
-							? 'text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
-							: 'text-2xl md:text-3xl font-bold text-white'
-					}
-					onClick={(e) => {
-						handleUnitsChange(e);
-						changeFontToggle();
-					}}
-				>
-					°C
-				</button>
+				{changedC ? (
+					<button
+						name='metric'
+						className='text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
+						onClick={(e) => {
+							handleUnitsChange(e);
+							changeFontToggle();
+						}}
+					>
+						°C
+					</button>
+				) : (
+					<button className='text-2xl md:text-3xl font-bold text-white'>
+						°C
+					</button>
+				)}
 				<p className='text-xl text-white mx-1'>|</p>
-				<button
-					name='imperial'
-					className={
-						changedF
-							? 'text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
-							: 'text-2xl md:text-3xl font-bold text-white'
-					}
-					onClick={(e) => {
-						handleUnitsChange(e);
-						changeFontToggle();
-					}}
-				>
-					°F
-				</button>
+
+				{changedC ? (
+					<button className='text-2xl md:text-3xl font-bold text-white'>
+						°F
+					</button>
+				) : (
+					<button
+						name='imperial'
+						className='text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
+						onClick={(e) => {
+							handleUnitsChange(e);
+							changeFontToggle();
+						}}
+					>
+						°F
+					</button>
+				)}
 			</div>
-			{/* </div> */}
-			{/* </div> */}
 		</div>
 	);
 };
