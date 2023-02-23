@@ -42,7 +42,7 @@ function App() {
 
 		const range = units === 'metric' ? 25 : 77;
 
-		if (weather.temp < range) {
+		if (weather.temp <= range) {
 			return 'from-cyan-700 to-blue-700';
 		}
 		return 'from-yellow-700 to-orange-700';
