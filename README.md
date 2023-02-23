@@ -1,3 +1,30 @@
+# react-weatherApp-3hourley
+
+### Describe in English
+
+Using API, Get current weather data and three hourly forecast data from OpenWeather API. I struggled that get data and restructure it into what I just needed. Also, Search for the city or country wherever you want. You can set the Celsius and Fahrenheit easily.
+
+### Describe in Japanese
+
+OpenWeather API を使って作成したお天気アプリ。好きな都市や国で検索して、現在の天気や 3 時間毎の天気情報を取得できる。必要なデータだけを取得し、再構築して配列にまとめていくのに苦労した。摂氏、華氏表示も簡単に変更できる。
+
+## Demo
+
+![weatherApp](https://user-images.githubusercontent.com/75118062/220865632-fd4d82f3-98fa-44fa-aa32-11f8948c1c47.gif)
+
+## Dependency
+
+- @iconscout/react-unicons@1.1.6 extraneous
+- @testing-library/jest-dom@5.16.5
+- @testing-library/react@13.4.0
+- @testing-library/user-event@13.5.0
+- dotenv@16.0.3 extraneous
+- luxon@3.1.1 extraneous
+- react-dom@18.2.0
+- react-scripts@5.0.1
+- react@18.2.0
+- web-vitals@2.1.4
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,4 +95,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 # react-weather-app2
