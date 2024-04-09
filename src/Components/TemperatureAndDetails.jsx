@@ -5,6 +5,8 @@ import {
 	UilWind,
 	UilSun,
 	UilSunset,
+	UilTemperaturePlus,
+	UilTemperatureMinus
 } from '@iconscout/react-unicons';
 import { iconUrlFromCode } from '../services/WeatherService';
 import { formatToLocalTime } from '../services/ForecastService';
@@ -67,34 +69,36 @@ export const TemperatureAndDetails = ({
 			</div>
 
 			<div className='flex flex-row items-center justify-center  md:space-x-2 text-white text-sm pt-2'>
-				<p className='font-light text-center'>
-					Rise:{' '}
-					<span className='font-sm md:font-medium ml-1'>
+				<div className='flex items-center space-x-1'>
+					<p className='font-light text-center'>Rise: </p>
+					<UilSun />
+					<p className='font-sm md:font-medium ml-1'>
 						{formatToLocalTime(sunrise, timezoneInMinutes, 'hh:mm a')}
-					</span>
-				</p>
-				<UilSunset />
-				<p className='font-light ml-1'>|</p>
-				<p className='font-light text-center'>
-					Set:{' '}
-					<span className='font-medium ml-1'>
-						{' '}
+					</p>
+				</div>
+
+				<p className='font-light mx-1'>|</p>
+
+				<div className='flex items-center space-x-1'>
+					<p className='font-light text-center'>Set:</p>
+					<UilSunset />
+					<p className='font-medium ml-1'>
 						{formatToLocalTime(sunset, timezoneInMinutes, 'hh:mm a')}
-					</span>
-				</p>
-				<UilSun />
+					</p>
+				</div>
 				<p className='font-light  ml-1'>|</p>
+
 				<p className='font-light text-center '>
 					High:{' '}
 					<span className='font-medium ml-1'>{`${temp_max.toFixed()}°`}</span>
 				</p>
-				<UilSun />
+				<UilTemperaturePlus />
 				<p className='font-light ml-1'>|</p>
 				<p className='font-light text-center'>
 					Low:{' '}
 					<span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
 				</p>
-				<UilSun />
+				<UilTemperatureMinus />
 			</div>
 		</div>
 	);
