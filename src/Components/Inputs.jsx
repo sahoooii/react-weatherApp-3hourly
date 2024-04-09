@@ -1,8 +1,11 @@
 import React from 'react';
 import { UilSearch, UilLocationPoint } from '@iconscout/react-unicons';
 import { useState } from 'react';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 const Inputs = ({ setQuery, units, setUnits }) => {
+	const isAboveMediumScreens = useMediaQuery('(min-width: 768px)');
+
 	const [city, setCity] = useState('');
 	const [changedC, setChangedC] = useState(false);
 	// const [changedF, setChangedF] = useState(true);
@@ -40,28 +43,28 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	};
 
 	return (
-		<div className='flex flex-row justify-center my-6'>
+		<div className='md:flex flex-row my-6'>
 			<div className='flex flex-row md:w-3/4 items-center justify-center space-x-2 md:space-x-4'>
 				<input
 					value={city}
 					onChange={(e) => setCity(e.currentTarget.value)}
 					type='text'
 					placeholder='Search for the city...'
-					className='text-xl font-light md:w-full p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase'
+					className='md:text-xl text-lg font-light md:w-[450px] w-2/3 p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase rounded-md'
 				/>
 				<UilSearch
-					size={20}
+					size={isAboveMediumScreens ? 24 : 20}
 					className='text-white cursor-pointer transition ease-out hover:scale-125'
 					onClick={handleSearchClick}
 				/>
 				<UilLocationPoint
-					size={20}
+					size={isAboveMediumScreens ? 24 : 20}
 					className='text-white cursor-pointer transition ease-out hover:scale-125'
 					onClick={handleCurrentLocationClick}
 				/>
 			</div>
 
-			<div className='flex flex-row md:w-1/4 items-center justify-center ml-2'>
+			<div className='flex flex-row md:w-1/4 items-center justify-center mx-auto mt-2 md:mt-0'>
 				{changedC ? (
 					<button
 						name='metric'
