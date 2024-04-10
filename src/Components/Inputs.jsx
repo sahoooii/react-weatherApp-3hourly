@@ -15,7 +15,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 
 		if (city !== '') {
 			setQuery({ q: city });
-			setCity('');
+			// setCity('');
 		}
 	};
 
@@ -49,10 +49,10 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	};
 
 	return (
-		<div className='md:flex flex-row my-6'>
+		<div className='md:flex flex-row my-6  items-center justify-center'>
 			<form
 				onSubmit={handleSearch}
-				className='flex flex-row lg:w-3/4 md:w-4/5 items-center justify-center space-x-2 md:space-x-4'
+				className='flex md:w-[80%] flex-row items-center justify-center space-x-2 md:space-x-4'
 			>
 				<div className='relative'>
 					<input
@@ -60,7 +60,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 						onChange={(e) => setCity(e.currentTarget.value)}
 						type='text'
 						placeholder='Search for the city...'
-						className='md:text-xl text-lg font-light lg:w-[450px] md:w-[320px] w-[250px] p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase rounded-md'
+						className='md:text-xl text-lg font-light xl:w-[400px] md:w-[320px] w-[250px] p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase rounded-md'
 					/>
 					<button
 						className='absolute items-center top-0 bottom-0 right-3.5 text-gray-500'
@@ -86,7 +86,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 				/>
 			</form>
 
-			<div className='flex flex-row lg:w-1/4 md:w-1/5 items-center justify-center mx-auto mt-2 md:mt-0'>
+			<div className='flex flex-row md:w-[20%] items-center xl:justify-start justify-center mx-auto mt-2 md:mt-0'>
 				<button
 					name='metric'
 					className={` ${isCelsius ? selectedDegree : notSelectedDegree}`}
@@ -109,6 +109,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 					°F
 				</button>
 			</div>
+			<p>{city}</p>
 		</div>
 	);
 };
