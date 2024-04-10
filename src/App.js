@@ -47,25 +47,11 @@ function App() {
 		fetchWeather();
 	}, [query, units]);
 
-	// const formatBackgroundColor = () => {
-	// 	//default color
-	// 	if (!weather) {
-	// 		return 'from-cyan-700 to-blue-700';
-	// 	}
-
-	// 	const range = units === 'metric' ? 25 : 77;
-
-	// 	if (weather.temp <= range) {
-	// 		return 'from-cyan-700 to-blue-700';
-	// 	}
-	// 	return 'from-yellow-700 to-orange-700';
-	// };
-
 	return (
 		<div
 			className={`mx-auto w-[100%] py-12 px-5 md:px-28 lg:px-32 bg-gradient-to-br min-h-[100vh] shadow-gray-400 ${bg}`}
 		>
-			<div className='lg:w-[70%] mx-auto'>
+			<div className='xl:w-[85%] mx-auto'>
 				<TopButton setQuery={setQuery} />
 				<Inputs setQuery={setQuery} units={units} setUnits={setUnits} />
 			</div>
