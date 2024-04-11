@@ -109,7 +109,6 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 					°F
 				</button>
 			</div>
-			<p>{city}</p>
 		</div>
 	);
 };
