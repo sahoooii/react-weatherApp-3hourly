@@ -1,11 +1,17 @@
 import React from 'react';
-import { UilSearch, UilLocationPoint, UilHome } from '@iconscout/react-unicons';
+import {
+	UilSearch,
+	UilLocationPoint,
+	UilEstate,
+} from '@iconscout/react-unicons';
 import { MdOutlineClear } from 'react-icons/md';
 import { useState } from 'react';
 import useMediaQuery from '../hooks/useMediaQuery';
 
 const Inputs = ({ setQuery, units, setUnits }) => {
 	const isAboveMediumScreens = useMediaQuery('(min-width: 768px)');
+	const iconAnimation =
+		'text-white cursor-pointer transition ease-out hover:scale-125';
 
 	const [city, setCity] = useState('');
 	const [isCelsius, setIsCelsius] = useState(true);
@@ -15,7 +21,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 
 		if (city !== '') {
 			setQuery({ q: city });
-			// setCity('');
+			setCity('');
 		}
 	};
 
@@ -33,7 +39,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	// Handle Degree
 	const selectedDegree = 'text-3xl font-bold text-white';
 	const notSelectedDegree =
-		'text-xl text-white font-light transition ease-out hover:scale-125 duration-500';
+		'text-xl text-white font-light transition ease-out hover:scale-125';
 
 	//metric or imperial
 	const handleUnitsChange = (e) => {
@@ -49,7 +55,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	};
 
 	return (
-		<div className='md:flex flex-row my-6  items-center justify-center'>
+		<div className='md:flex flex-row my-6 items-center justify-center'>
 			<form
 				onSubmit={handleSearch}
 				className='flex md:w-[80%] flex-row items-center justify-center space-x-2 md:space-x-4'
@@ -59,8 +65,8 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 						value={city}
 						onChange={(e) => setCity(e.currentTarget.value)}
 						type='text'
-						placeholder='Search for the city...'
-						className='md:text-xl text-lg font-light xl:w-[400px] md:w-[320px] w-[250px] p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase rounded-md'
+						placeholder='Search for city...'
+						className='md:text-xl text-lg font-light xl:w-[400px] md:w-[320px] w-[250px] p-2 focus:outline-none shadow-xl capitalize rounded-md'
 					/>
 					<button
 						className='absolute items-center top-0 bottom-0 right-3.5 text-gray-500'
@@ -71,17 +77,17 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 				</div>
 				<UilSearch
 					size={isAboveMediumScreens ? 24 : 20}
-					className='text-white cursor-pointer transition ease-out hover:scale-125'
+					className={`${iconAnimation}`}
 					onClick={handleSearch}
 				/>
 				<UilLocationPoint
 					size={isAboveMediumScreens ? 24 : 20}
-					className='text-white cursor-pointer transition ease-out hover:scale-125'
+					className={`${iconAnimation}`}
 					onClick={handleCurrentLocationClick}
 				/>
-				<UilHome
+				<UilEstate
 					size={isAboveMediumScreens ? 24 : 20}
-					className='text-white cursor-pointer transition ease-out hover:scale-125'
+					className={`${iconAnimation}`}
 					onClick={() => setQuery({ q: 'tokyo' })}
 				/>
 			</form>

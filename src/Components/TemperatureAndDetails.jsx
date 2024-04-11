@@ -46,10 +46,10 @@ export const TemperatureAndDetails = ({
 					/>
 					<p className='text-5xl'>{`${temp.toFixed()} °${
 						units === 'metric' ? 'C' : 'F'
-					}`}</p>{' '}
+					}`}</p>
 				</div>
 
-				<div className='md:flex md:flex-col space-y-2 mb-1 md:justify-start items-start justify-center'>
+				<div className='md:flex md:flex-col space-y-2 mb-1 md:items-start'>
 					<div className={`${weatherInfo}`}>
 						<UilTemperature size={18} className='mr-1' />
 						Real feel:
@@ -77,7 +77,7 @@ export const TemperatureAndDetails = ({
 					<UilSun />
 					<p className={`${detailsFont}`}>
 						Rise:
-						<span className={`${detailsFont} mx-0.5`}>
+						<span className={`${detailsFont} ml-1`}>
 							{formatToLocalTime(sunrise, timezoneInMinutes, 'hh:mm a')}
 						</span>
 					</p>
@@ -87,7 +87,7 @@ export const TemperatureAndDetails = ({
 					<UilSunset />
 					<p className={`${detailsFont}`}>
 						Set:
-						<span className={`${detailsFont} mx-0.5`}>
+						<span className={`${detailsFont} ml-1`}>
 							{formatToLocalTime(sunset, timezoneInMinutes, 'hh:mm a')}
 						</span>
 					</p>
@@ -95,7 +95,7 @@ export const TemperatureAndDetails = ({
 				<p className='font-light mx-1'>|</p>
 				<div className='flex items-center space-x-1'>
 					<UilArrowCircleUp />
-					<p className={`${detailsFont} mx-0.5`}>
+					<p className={`${detailsFont}`}>
 						High:{' '}
 						<span className='font-medium ml-1'>{`${temp_max.toFixed()}°`}</span>
 					</p>
@@ -103,7 +103,7 @@ export const TemperatureAndDetails = ({
 				<p className='font-light mx-1'>|</p>
 				<div className='flex items-center space-x-1'>
 					<UilArrowCircleDown />
-					<p className={`${detailsFont} mx-0.5`}>
+					<p className={`${detailsFont}`}>
 						Low:{' '}
 						<span className='font-medium ml-1'>{`${temp_min.toFixed()}°`}</span>
 					</p>
