@@ -10,7 +10,7 @@ import getFormattedThreeHoursWeather from './services/ForecastService';
 
 function App() {
 	const coldBg = 'from-cyan-700 to-blue-700';
-	const hotBg = 'from-yellow-700 to-orange-700';
+	const hotBg = 'from-yellow-500 to-red-500';
 
 	const [query, setQuery] = useState({ q: 'tokyo' });
 	const [units, setUnits] = useState('metric'); //°C ?°F
@@ -49,7 +49,7 @@ function App() {
 
 	return (
 		<div
-			className={`mx-auto w-[100%] py-12 px-5 md:px-28 lg:px-32 bg-gradient-to-br min-h-[100vh] shadow-gray-400 ${bg}`}
+			className={`mx-auto w-[100%] py-12 px-5 md:px-28 lg:px-32 bg-gradient-to-br min-h-[100vh] ${bg}`}
 		>
 			<div className='xl:w-[85%] mx-auto'>
 				<TopButton setQuery={setQuery} />
@@ -61,10 +61,7 @@ function App() {
 					<>
 						<TimeAndLocation weather={weather} />
 						<TemperatureAndDetails weather={weather} units={units} />
-						<Forecast
-							title='3 hour forecast'
-							threeHourWeather={threeHourWeather}
-						/>
+						<Forecast threeHourWeather={threeHourWeather} />
 					</>
 				)}
 			</div>
