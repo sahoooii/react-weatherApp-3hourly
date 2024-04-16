@@ -7,6 +7,7 @@ import { TemperatureAndDetails } from './Components/TemperatureAndDetails';
 import Forecast from './Components/Forecast';
 import getFormattedCurrentWeather from './services/WeatherService';
 import getFormattedThreeHourlyWeather from './services/ForecastService';
+import Loading from './Components/Loading';
 
 function App() {
 	const coldBg = 'from-cyan-700 to-blue-700';
@@ -80,9 +81,9 @@ function App() {
 						<Forecast threeHourlyWeather={threeHourlyWeather} />
 					</>
 				) : (
-					<div className='mx-auto text-center text-white text-2xl'>
-						Loading...
-					</div>
+					<>
+						<Loading />
+					</>
 				)}
 			</div>
 		</div>
