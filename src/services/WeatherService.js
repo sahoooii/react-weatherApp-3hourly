@@ -11,7 +11,6 @@ const getWeatherData = (infoType, searchParams) => {
 };
 
 const formatCurrentWeather = (data) => {
-	console.log(data);
 	const {
 		coord: { lat, lon },
 		main: { temp, feels_like, temp_min, temp_max, humidity },
@@ -44,7 +43,7 @@ const formatCurrentWeather = (data) => {
 };
 
 //Get current weather
-const getFormattedWeatherData = async (searchParams) => {
+const getFormattedCurrentWeather = async (searchParams) => {
 	const formattedCurrentWeather = await getWeatherData(
 		'weather',
 		searchParams
@@ -54,9 +53,6 @@ const getFormattedWeatherData = async (searchParams) => {
 	return formattedCurrentWeather;
 };
 
-const iconUrlFromCode = (icon) =>
-	`http://openweathermap.org/img/wn/${icon}@2x.png`;
+export default getFormattedCurrentWeather;
 
-export default getFormattedWeatherData;
-
-export { iconUrlFromCode, getWeatherData };
+export { getWeatherData };
