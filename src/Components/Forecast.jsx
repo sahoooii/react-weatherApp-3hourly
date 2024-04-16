@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Forecast = ({ threeHourWeather }) => {
-	// console.log(threeHourWeather);
+const Forecast = ({ threeHourlyWeather }) => {
+	// console.log(threeHourlyWeather);
 	return (
 		<div className='mb-6'>
 			<div className='flex items-center justify-start mt-6'>
@@ -10,7 +10,7 @@ const Forecast = ({ threeHourWeather }) => {
 			<hr className='my-2' />
 
 			<div className='flex items-center justify-between md:space-x-5 space-x-3 text-white'>
-				{threeHourWeather.map((weather) => (
+				{threeHourlyWeather.map((weather) => (
 					<div
 						className='flex flex-col items-center text-center text-sm md:text-base'
 						key={weather.id}

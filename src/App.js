@@ -1,42 +1,58 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import TopButton from './Components/TopButton';
 import Inputs from './Components/Inputs';
 import TimeAndLocation from './Components/TimeAndLocation';
 import { TemperatureAndDetails } from './Components/TemperatureAndDetails';
 import Forecast from './Components/Forecast';
-import getFormattedWeatherData from './services/WeatherService';
-import { useEffect, useState } from 'react';
-import getFormattedThreeHoursWeather from './services/ForecastService';
+import getFormattedCurrentWeather from './services/WeatherService';
+import getFormattedThreeHourlyWeather from './services/ForecastService';
 
 function App() {
 	const coldBg = 'from-cyan-700 to-blue-700';
 	const hotBg = 'from-yellow-500 to-red-500';
 
+	//Search city
 	const [query, setQuery] = useState({ q: 'tokyo' });
-	const [units, setUnits] = useState('metric'); //°C ?°F
+	//°C ?°F
+	const [units, setUnits] = useState('metric');
+	//Put Current Weather
 	const [weather, setWeather] = useState(null);
-	const [threeHourWeather, setThreeHourWeather] = useState(null); //for 3h forecastData[0]=listを入れていく
-	const [bg, setBg] = useState(coldBg); //BgColor change
+	//Put threeHourly weather list
+	const [threeHourlyWeather, setThreeHourlyWeather] = useState(null);
+	//BgColor change
+	const [bg, setBg] = useState(coldBg);
+
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const fetchWeather = async () => {
-			const currentData = await getFormattedWeatherData({ ...query, units });
-			// console.log(currentData);
-			//3hour weather
-			await getFormattedThreeHoursWeather({
+			setLoading(true);
+
+			const currentWeather = await getFormattedCurrentWeather({
+				...query,
+				units,
+			});
+			//3hourly weather
+			await getFormattedThreeHourlyWeather({
 				...query,
 				units,
 			}).then((forecastData) => {
-				// console.log({ ...forecastData[1], ...currentData });//0=list 1=data separated
-				const allTheData = { ...forecastData[1], ...currentData }; //current+ lat lon timezone
-				setWeather(allTheData);
+				// console.log('forecastData:', forecastData);
+				const { timezoneInMinutes, threeHourly } = forecastData;
+				const currentWeatherAndTimeZone = {
+					...currentWeather,
+					timezoneInMinutes,
+				};
 
-				setThreeHourWeather(forecastData[0]);
+				setWeather(currentWeatherAndTimeZone);
+				setThreeHourlyWeather(threeHourly);
+				setLoading(false);
 
 				//BgColor change
 				const range = units === 'metric' ? 25 : 77;
 
-				if (currentData.temp <= range) {
+				if (currentWeather.temp <= range) {
 					setBg(coldBg);
 				} else {
 					setBg(hotBg);
@@ -57,12 +73,16 @@ function App() {
 			</div>
 
 			<div className='w-[95%] lg:w-[70%] mx-auto'>
-				{weather && (
+				{weather && !loading ? (
 					<>
 						<TimeAndLocation weather={weather} />
 						<TemperatureAndDetails weather={weather} units={units} />
-						<Forecast threeHourWeather={threeHourWeather} />
+						<Forecast threeHourlyWeather={threeHourlyWeather} />
 					</>
+				) : (
+					<div className='mx-auto text-center text-white text-2xl'>
+						Loading...
+					</div>
 				)}
 			</div>
 		</div>
