@@ -9,12 +9,11 @@ import { useState } from 'react';
 import useMediaQuery from '../hooks/useMediaQuery';
 
 const Inputs = ({ setQuery, units, setUnits }) => {
+	const [city, setCity] = useState('');
+
 	const isAboveMediumScreens = useMediaQuery('(min-width: 768px)');
 	const iconAnimation =
 		'text-white cursor-pointer transition ease-out hover:scale-125';
-
-	const [city, setCity] = useState('');
-	const [isCelsius, setIsCelsius] = useState(true);
 
 	const handleSearch = (e) => {
 		e.preventDefault();
@@ -47,11 +46,6 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		if (units !== selectedUnit) {
 			setUnits(selectedUnit);
 		}
-	};
-
-	//onClick °C ? °F
-	const changeUnits = () => {
-		setIsCelsius(!isCelsius);
 	};
 
 	return (
@@ -95,10 +89,11 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 			<div className='flex flex-row md:w-[20%] items-center xl:justify-start justify-center mx-auto mt-2 md:mt-0'>
 				<button
 					name='metric'
-					className={` ${isCelsius ? selectedDegree : notSelectedDegree}`}
+					className={` ${
+						units === 'metric' ? selectedDegree : notSelectedDegree
+					}`}
 					onClick={(e) => {
 						handleUnitsChange(e);
-						changeUnits();
 					}}
 				>
 					°C
@@ -106,10 +101,11 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 				<p className='text-xl text-white mx-1'>|</p>
 				<button
 					name='imperial'
-					className={`${!isCelsius ? selectedDegree : notSelectedDegree}`}
+					className={`${
+						units === 'imperial' ? selectedDegree : notSelectedDegree
+					}`}
 					onClick={(e) => {
 						handleUnitsChange(e);
-						changeUnits();
 					}}
 				>
 					°F
