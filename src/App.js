@@ -24,22 +24,36 @@ function App() {
 	//BgColor change
 	const [bg, setBg] = useState(coldBg);
 
-	const [loading, setLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [showMessage, setShowMessage] = useState(false);
+
+	// Show not found message
+	const searchResult = async (result) => {
+		if (result === undefined) {
+			setShowMessage(true);
+			setIsLoading(false);
+		} else {
+			setShowMessage(false);
+			// setIsLoading(true);
+		}
+	};
 
 	useEffect(() => {
 		const fetchWeather = async () => {
-			setLoading(true);
+			setIsLoading(true);
 
 			const currentWeather = await getFormattedCurrentWeather({
 				...query,
 				units,
 			});
+
+			await searchResult(currentWeather);
+
 			//3hourly weather
 			await getFormattedThreeHourlyWeather({
 				...query,
 				units,
 			}).then((forecastData) => {
-				// console.log('forecastData:', forecastData);
 				const { timezoneInMinutes, threeHourly } = forecastData;
 				const currentWeatherAndTimeZone = {
 					...currentWeather,
@@ -48,7 +62,6 @@ function App() {
 
 				setWeather(currentWeatherAndTimeZone);
 				setThreeHourlyWeather(threeHourly);
-				setLoading(false);
 
 				//BgColor change
 				const range = units === 'metric' ? 25 : 77;
@@ -58,9 +71,10 @@ function App() {
 				} else {
 					setBg(hotBg);
 				}
+
+				setIsLoading(false);
 			});
 		};
-
 		fetchWeather();
 	}, [query, units]);
 
@@ -74,7 +88,14 @@ function App() {
 			</div>
 
 			<div className='w-[95%] lg:w-[70%] mx-auto'>
-				{weather && !loading ? (
+				{showMessage && !isLoading ? (
+					<div className='text-center mt-20'>
+						<p className='text-2xl text-white'>
+							<span className='font-bold text-3xl'>{`"${query.q}"`}</span>{' '}
+							<span>is Not Found</span>
+						</p>
+					</div>
+				) : weather && !isLoading ? (
 					<>
 						<TimeAndLocation weather={weather} />
 						<TemperatureAndDetails weather={weather} units={units} />
@@ -86,6 +107,20 @@ function App() {
 					</>
 				)}
 			</div>
+
+			{/* <div className='w-[95%] lg:w-[70%] mx-auto'>
+				{weather && !loading ? (
+					<>
+						<TimeAndLocation weather={weather} />
+						<TemperatureAndDetails weather={weather} units={units} />
+						<Forecast threeHourlyWeather={threeHourlyWeather} />
+					</>
+				) : (
+					<>
+						<Loading />
+					</>
+				)}
+			</div> */}
 		</div>
 	);
 }

@@ -8,7 +8,10 @@ import {
 	UilArrowCircleUp,
 	UilArrowCircleDown,
 } from '@iconscout/react-unicons';
-import { formatToLocalTime, iconUrlFromCode } from '../services/ForecastService';
+import {
+	formatToLocalTime,
+	iconUrlFromCode,
+} from '../services/ForecastService';
 
 export const TemperatureAndDetails = ({
 	weather: {
