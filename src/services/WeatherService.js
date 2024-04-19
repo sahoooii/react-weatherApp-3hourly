@@ -44,13 +44,16 @@ const formatCurrentWeather = (data) => {
 
 //Get current weather
 const getFormattedCurrentWeather = async (searchParams) => {
-	const formattedCurrentWeather = await getWeatherData(
-		'weather',
-		searchParams
-	).then(formatCurrentWeather);
+	try {
+		const formattedCurrentWeather = await getWeatherData(
+			'weather',
+			searchParams
+		).then(formatCurrentWeather);
 
-	// console.log(formattedCurrentWeather);
-	return formattedCurrentWeather;
+		return formattedCurrentWeather;
+	} catch (error) {
+		console.log(error.message);
+	}
 };
 
 export default getFormattedCurrentWeather;

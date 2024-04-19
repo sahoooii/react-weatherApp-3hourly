@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Forecast = ({ threeHourlyWeather }) => {
-	// console.log(threeHourlyWeather);
 	return (
 		<div className='mb-6'>
 			<div className='flex items-center justify-start mt-6'>

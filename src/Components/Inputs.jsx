@@ -24,9 +24,11 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		}
 	};
 
+	// Get current Location weather
 	const handleCurrentLocationClick = () => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition((position) => {
+				console.log('position:', position);
 				let lat = position.coords.latitude;
 				let lon = position.coords.longitude;
 
@@ -43,6 +45,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	//metric or imperial
 	const handleUnitsChange = (e) => {
 		const selectedUnit = e.currentTarget.name;
+
 		if (units !== selectedUnit) {
 			setUnits(selectedUnit);
 		}
@@ -62,10 +65,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 						placeholder='Search for city...'
 						className='md:text-xl text-lg font-light xl:w-[400px] md:w-[320px] w-[250px] p-2 focus:outline-none shadow-xl capitalize rounded-md'
 					/>
-					<button
-						className='absolute items-center top-0 bottom-0 right-3.5 text-gray-500'
-						// onClick={() => setCity('')}
-					>
+					<button className='absolute items-center top-0 bottom-0 right-3.5 text-gray-500'>
 						<MdOutlineClear size={18} onClick={() => setCity('')} />
 					</button>
 				</div>

@@ -17,7 +17,7 @@ const formatForecastWeather = (data) => {
 	const { city } = data;
 	const {
 		timezone,
-		coord: { lat, lon },
+		// coord: { lat, lon },
 	} = city;
 
 	// timezone / 60 for change min
@@ -36,18 +36,21 @@ const formatForecastWeather = (data) => {
 		};
 	});
 
-	return { threeHourly, timezoneInMinutes, lat, lon };
+	return { threeHourly, timezoneInMinutes };
 };
 
 const getFormattedThreeHourlyWeather = async (searchParams) => {
-	// Get  lat, lon, timezoneInMinutes, threeHourly
-	let formattedThreeHourlyForecast = await getWeatherData(
-		'forecast',
-		searchParams
-	).then(formatForecastWeather);
-	// console.log('formattedThreeHourlyForecast', formattedThreeHourlyForecast);
+	try {
+		// Get  timezoneInMinutes, threeHourly
+		let formattedThreeHourlyForecast = await getWeatherData(
+			'forecast',
+			searchParams
+		).then(formatForecastWeather);
 
-	return formattedThreeHourlyForecast;
+		return formattedThreeHourlyForecast;
+	} catch (error) {
+		console.log('forecast:', error.message);
+	}
 };
 
 export default getFormattedThreeHourlyWeather;
