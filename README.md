@@ -1,29 +1,48 @@
-# react-weatherApp-3hourley
+# react-weatherApp-3hourly
 
-### Describe in English
+<img src="https://img.shields.io/badge/-React-555.svg?logo=react&style=flat"> <img src="https://img.shields.io/badge/-Tailwind_CSS-06B6D4.svg?logo=tailwindcss&style=flat&logoColor=ff0"> <img src="https://img.shields.io/badge/-Motion-0055ff.svg?logo=framer&style=flat-square"> <img src="https://img.shields.io/badge/Open_Weather-orange"> <img src="https://img.shields.io/badge/Luxon-69639A">
 
-Using API, Get current weather data and three hourly forecast data from OpenWeather API. I struggled that get data and restructure it into what I just needed. Also, Search for the city or country wherever you want. You can set the Celsius and Fahrenheit easily.
-
-### Describe in Japanese
-
-OpenWeather API を使って作成したお天気アプリ。好きな都市や国で検索して、現在の天気や 3 時間毎の天気情報を取得できる。必要なデータだけを取得し、再構築して配列にまとめていくのに苦労した。摂氏、華氏表示も簡単に変更できる。
+<p>etc...</p>
 
 ## Demo
 
 ![weatherApp](https://user-images.githubusercontent.com/75118062/220865632-fd4d82f3-98fa-44fa-aa32-11f8948c1c47.gif)
 
-## Dependency
+## Describe
 
-- @iconscout/react-unicons@1.1.6 extraneous
-- @testing-library/jest-dom@5.16.5
-- @testing-library/react@13.4.0
-- @testing-library/user-event@13.5.0
-- dotenv@16.0.3 extraneous
-- luxon@3.1.1 extraneous
-- react-dom@18.2.0
-- react-scripts@5.0.1
-- react@18.2.0
-- web-vitals@2.1.4
+Using OpenWeather API, Get current weather data and three hourly forecast data. I struggled that get data and restructure it into what I just needed. Also, created an amazing loading animation and background, the Search functionality of city or country, see a three hourly forecast. You can set the Celsius and Fahrenheit easily. Updated to be more user-friendly.
+
+<br />
+
+OpenWeather API を使って作成したお天気アプリ。必要なデータだけを取得し、再構築してまとめていくのに苦労した。ローディング中のアニメーション、気温によって変わる背景カラー、好きな都市や国でのお天気検索機能、現在の天気や 3 時間毎の天気情報を取得でき、 摂氏、華氏表示も簡単に変更できるように、より使いやすくした。
+
+## Features
+
+- Search by city or country
+- Get details of weather
+	- ex: Real Feel, Humidity, Wind Speed, Sunrise and Sunset time, and so on.
+- Get a current location weather
+- Get a three hourly weather forecast
+- Loading animation
+- Changing background color
+- Fully responsive design
+
+
+## Env Variables
+
+Rename the `example.env` file to `.env` and add the following
+
+```
+REACT_APP_API_KEY = Your Open Weather API KEY
+REACT_APP_BASE_URL = https://api.openweathermap.org/data/2.5
+
+```
+## src
+* [Open Weather](https://openweathermap.org/)
+* [Icon Scout](https://iconscout.com/)
+
+
+<br />
 
 # Getting Started with Create React App
 
@@ -95,5 +114,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# react-weather-app2
