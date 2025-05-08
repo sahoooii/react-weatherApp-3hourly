@@ -1,13 +1,13 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import TopButton from './Components/TopButton';
-import Inputs from './Components/Inputs';
-import TimeAndLocation from './Components/TimeAndLocation';
-import { TemperatureAndDetails } from './Components/TemperatureAndDetails';
-import Forecast from './Components/Forecast';
+import TopButton from './components/TopButton';
+import Inputs from './components/Inputs';
+import TimeAndLocation from './components/TimeAndLocation';
+import { TemperatureAndDetails } from './components/TemperatureAndDetails';
+import Forecast from './components/Forecast';
 import getFormattedCurrentWeather from './services/WeatherService';
 import getFormattedThreeHourlyWeather from './services/ForecastService';
-import Loading from './Components/Loading';
+import Loading from './components/Loading';
 
 function App() {
 	const coldBg = 'from-cyan-700 to-blue-700';

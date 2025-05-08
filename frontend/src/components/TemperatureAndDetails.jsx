@@ -11,7 +11,7 @@ import {
 import {
 	formatToLocalTime,
 	iconUrlFromCode,
-} from '../services/ForecastService';
+} from 'services/ForecastService';
 
 export const TemperatureAndDetails = ({
 	weather: {
