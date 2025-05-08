@@ -13,15 +13,15 @@ const TopButton = ({ setQuery }) => {
 		},
 		{
 			id: 3,
-			cityName: 'Singapore',
+			cityName: 'Paris',
 		},
 		{
 			id: 4,
-			cityName: 'Honolulu',
+			cityName: 'Sydney',
 		},
 		{
 			id: 5,
-			cityName: 'Paris',
+			cityName: 'Honolulu',
 		},
 	];
 

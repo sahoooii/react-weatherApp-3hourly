@@ -1,7 +1,7 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
-const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-// infoType=onecalll ? weather ? forecast
+// infoType= weather ? forecast
 //searchParams= cityName ? lat ? lod
 const getWeatherData = (infoType, searchParams) => {
 	const url = new URL(BASE_URL + '/' + infoType);
@@ -42,20 +42,20 @@ const formatCurrentWeather = (data) => {
 	};
 };
 
-//current weather
-const getFormattedWeatherData = async (searchParams) => {
-	const formattedCurrentWeather = await getWeatherData(
-		'weather',
-		searchParams
-	).then(formatCurrentWeather);
+//Get current weather
+const getFormattedCurrentWeather = async (searchParams) => {
+	try {
+		const formattedCurrentWeather = await getWeatherData(
+			'weather',
+			searchParams
+		).then(formatCurrentWeather);
 
-	// console.log(formattedCurrentWeather);
-	return formattedCurrentWeather;
+		return formattedCurrentWeather;
+	} catch (error) {
+		console.log(error.message);
+	}
 };
 
-const iconUrlFromCode = (icon) =>
-	`http://openweathermap.org/img/wn/${icon}@2x.png`;
+export default getFormattedCurrentWeather;
 
-export default getFormattedWeatherData;
-
-export { iconUrlFromCode, getWeatherData };
+export { getWeatherData };

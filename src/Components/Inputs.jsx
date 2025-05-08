@@ -1,23 +1,34 @@
 import React from 'react';
-import { UilSearch, UilLocationPoint } from '@iconscout/react-unicons';
+import {
+	UilSearch,
+	UilLocationPoint,
+	UilEstate,
+} from '@iconscout/react-unicons';
+import { MdOutlineClear } from 'react-icons/md';
 import { useState } from 'react';
+import useMediaQuery from '../hooks/useMediaQuery';
 
 const Inputs = ({ setQuery, units, setUnits }) => {
 	const [city, setCity] = useState('');
-	const [changedC, setChangedC] = useState(false);
-	// const [changedF, setChangedF] = useState(true);
 
-	const handleSearchClick = () => {
+	const isAboveMediumScreens = useMediaQuery('(min-width: 768px)');
+	const iconAnimation =
+		'text-white cursor-pointer transition ease-out hover:scale-125';
+
+	const handleSearch = (e) => {
+		e.preventDefault();
+
 		if (city !== '') {
 			setQuery({ q: city });
+			setCity('');
 		}
-		//入力後input空に
-		setCity('');
 	};
 
+	// Get current Location weather
 	const handleCurrentLocationClick = () => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition((position) => {
+				console.log('position:', position);
 				let lat = position.coords.latitude;
 				let lon = position.coords.longitude;
 
@@ -26,76 +37,79 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		}
 	};
 
+	// Handle Degree
+	const selectedDegree = 'text-3xl font-bold text-white';
+	const notSelectedDegree =
+		'text-xl text-white font-light transition ease-out hover:scale-125';
+
 	//metric or imperial
 	const handleUnitsChange = (e) => {
 		const selectedUnit = e.currentTarget.name;
+
 		if (units !== selectedUnit) {
 			setUnits(selectedUnit);
 		}
 	};
 
-	//onClick °C ? °F
-	const changeFontToggle = () => {
-		setChangedC(!changedC);
-	};
-
 	return (
-		<div className='flex flex-row justify-center my-6'>
-			<div className='flex flex-row md:w-3/4 items-center justify-center space-x-2 md:space-x-4'>
-				<input
-					value={city}
-					onChange={(e) => setCity(e.currentTarget.value)}
-					type='text'
-					placeholder='Search for the city...'
-					className='text-xl font-light md:w-full p-2 focus:outline-none shadow-xl capitalize placeholder:lowercase'
-				/>
+		<div className='md:flex flex-row my-6 items-center justify-center'>
+			<form
+				onSubmit={handleSearch}
+				className='flex md:w-[80%] flex-row items-center justify-center space-x-2 md:space-x-4'
+			>
+				<div className='relative'>
+					<input
+						value={city}
+						onChange={(e) => setCity(e.currentTarget.value)}
+						type='text'
+						placeholder='Search for city...'
+						className='md:text-xl text-lg font-light xl:w-[400px] md:w-[320px] w-[250px] p-2 focus:outline-none shadow-xl capitalize rounded-md'
+					/>
+					<button className='absolute items-center top-0 bottom-0 right-3.5 text-gray-500'>
+						<MdOutlineClear size={18} onClick={() => setCity('')} />
+					</button>
+				</div>
 				<UilSearch
-					size={20}
-					className='text-white cursor-pointer transition ease-out hover:scale-125'
-					onClick={handleSearchClick}
+					size={isAboveMediumScreens ? 24 : 20}
+					className={`${iconAnimation}`}
+					onClick={handleSearch}
 				/>
 				<UilLocationPoint
-					size={20}
-					className='text-white cursor-pointer transition ease-out hover:scale-125'
+					size={isAboveMediumScreens ? 24 : 20}
+					className={`${iconAnimation}`}
 					onClick={handleCurrentLocationClick}
 				/>
-			</div>
+				<UilEstate
+					size={isAboveMediumScreens ? 24 : 20}
+					className={`${iconAnimation}`}
+					onClick={() => setQuery({ q: 'tokyo' })}
+				/>
+			</form>
 
-			<div className='flex flex-row md:w-1/4 items-center justify-center ml-2'>
-				{changedC ? (
-					<button
-						name='metric'
-						className='text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
-						onClick={(e) => {
-							handleUnitsChange(e);
-							changeFontToggle();
-						}}
-					>
-						°C
-					</button>
-				) : (
-					<button className='text-2xl md:text-3xl font-bold text-white'>
-						°C
-					</button>
-				)}
+			<div className='flex flex-row md:w-[20%] items-center xl:justify-start justify-center mx-auto mt-2 md:mt-0'>
+				<button
+					name='metric'
+					className={` ${
+						units === 'metric' ? selectedDegree : notSelectedDegree
+					}`}
+					onClick={(e) => {
+						handleUnitsChange(e);
+					}}
+				>
+					°C
+				</button>
 				<p className='text-xl text-white mx-1'>|</p>
-
-				{changedC ? (
-					<button className='text-2xl md:text-3xl font-bold text-white'>
-						°F
-					</button>
-				) : (
-					<button
-						name='imperial'
-						className='text-lg md:text-xl text-white font-light transition ease-out hover:scale-125'
-						onClick={(e) => {
-							handleUnitsChange(e);
-							changeFontToggle();
-						}}
-					>
-						°F
-					</button>
-				)}
+				<button
+					name='imperial'
+					className={`${
+						units === 'imperial' ? selectedDegree : notSelectedDegree
+					}`}
+					onClick={(e) => {
+						handleUnitsChange(e);
+					}}
+				>
+					°F
+				</button>
 			</div>
 		</div>
 	);
