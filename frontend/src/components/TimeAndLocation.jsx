@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatToLocalTime } from '../services/ForecastService';
+import { formatToLocalTime } from 'services/ForecastService';
 
 const TimeAndLocation = ({
 	weather: { name, country, dt, timezoneInMinutes },

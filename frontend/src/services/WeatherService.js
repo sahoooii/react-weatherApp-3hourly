@@ -1,11 +1,10 @@
-const API_KEY = process.env.REACT_APP_API_KEY;
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-
 // infoType= weather ? forecast
 //searchParams= cityName ? lat ? lod
 const getWeatherData = (infoType, searchParams) => {
-	const url = new URL(BASE_URL + '/' + infoType);
-	url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
+	// const url = new URL(BASE_URL + '/' + infoType);
+	const url = new URL(`http://localhost:5000/api/weather`);
+	url.search = new URLSearchParams({ ...searchParams });
+	// url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
 
 	return fetch(url).then((res) => res.json());
 };
@@ -20,6 +19,7 @@ const formatCurrentWeather = (data) => {
 		weather,
 		wind: { speed },
 	} = data;
+	console.log('lat:', lat);
 
 	const { main: details_weather, icon } = weather[0];
 

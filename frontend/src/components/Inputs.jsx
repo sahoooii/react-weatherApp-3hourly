@@ -6,7 +6,7 @@ import {
 } from '@iconscout/react-unicons';
 import { MdOutlineClear } from 'react-icons/md';
 import { useState } from 'react';
-import useMediaQuery from '../hooks/useMediaQuery';
+import useMediaQuery from 'hooks/useMediaQuery';
 
 const Inputs = ({ setQuery, units, setUnits }) => {
 	const [city, setCity] = useState('');
