@@ -1,6 +1,10 @@
 # react-weatherApp-3hourly
 
-<img src="https://img.shields.io/badge/-React-555.svg?logo=react&style=flat"> <img src="https://img.shields.io/badge/-Tailwind_CSS-06B6D4.svg?logo=tailwindcss&style=flat&logoColor=ff0"> <img src="https://img.shields.io/badge/-Motion-0055ff.svg?logo=framer&style=flat-square"> <img src="https://img.shields.io/badge/Open_Weather-orange"> <img src="https://img.shields.io/badge/Luxon-69639A">
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Motion](https://img.shields.io/badge/Motion-0055ff?style=for-the-badge&logo=framer&logoColor=white)
+![Open Weather MAP](https://img.shields.io/badge/Open_Weather_Map-FF6600?style=for-the-badge&logo=open_weather_map&logoColor=white)
+![Luxon](https://img.shields.io/badge/Luxon-69639A?style=for-the-badge&logo=luxon&logoColor=white)
 
 <p>etc...</p>
 
