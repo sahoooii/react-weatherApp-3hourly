@@ -1,0 +1,8 @@
+# 環境変数ファイル
+.env
+
+# Node.js 依存モジュール
+node_modules/
+
+# その他
+.DS_Store
