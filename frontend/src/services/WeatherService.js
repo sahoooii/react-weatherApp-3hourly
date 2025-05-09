@@ -1,10 +1,11 @@
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 // infoType= weather ? forecast
 //searchParams= cityName ? lat ? lod
 const getWeatherData = async (infoType, searchParams) => {
-	// const url = new URL(BASE_URL + '/' + infoType);
-	const url = new URL(`http://localhost:5000/api/${infoType}`);
+	const url = new URL(`${BASE_URL}/api/${infoType}`);
+
 	url.search = new URLSearchParams({ ...searchParams });
-	// url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
 
 	const res = await fetch(url);
 	return await res.json();
