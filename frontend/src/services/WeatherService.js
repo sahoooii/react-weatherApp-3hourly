@@ -1,19 +1,22 @@
+import axios from 'axios';
+
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 // infoType= weather ? forecast
 //searchParams= cityName ? lat ? lod
 const getWeatherData = async (infoType, searchParams) => {
-	const url = new URL(`${BASE_URL}/api/${infoType}`);
-
-	url.search = new URLSearchParams({ ...searchParams });
-
-	const res = await fetch(url);
-	return await res.json();
+	try {
+		const res = await axios.get(`${BASE_URL}/api/${infoType}`, {
+			params: searchParams,
+		});
+		return res.data;
+	} catch (error) {
+		console.error('Failed to fetch API:', error);
+		throw error;
+	}
 };
 
 const formatCurrentWeather = (data) => {
-	console.log('data:', data);
-
 	const {
 		coord: { lat, lon },
 		main: { temp, feels_like, temp_min, temp_max, humidity },
@@ -52,8 +55,7 @@ const getFormattedCurrentWeather = async (searchParams) => {
 			'weather',
 			searchParams
 		).then(formatCurrentWeather);
-		console.log('formattedCurrentWeather:', formattedCurrentWeather);
-
+		
 		return formattedCurrentWeather;
 	} catch (error) {
 		console.log(error.message);
