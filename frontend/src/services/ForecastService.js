@@ -14,12 +14,8 @@ const formatToLocalTime = (
 
 // Get timezone from city and then format date and temp
 const formatForecastWeather = (data) => {
-	console.log('forecastData:', data);
-
 	const { city } = data;
-	const {
-		timezone,
-	} = city;
+	const { timezone } = city;
 
 	// timezone / 60 for change min
 	const timezoneInMinutes = timezone / 60;
@@ -50,7 +46,7 @@ const getFormattedThreeHourlyWeather = async (searchParams) => {
 
 		return formattedThreeHourlyForecast;
 	} catch (error) {
-		console.log('forecast:', error.message);
+		console.log(error.message);
 	}
 };
 

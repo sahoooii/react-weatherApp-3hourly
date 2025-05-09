@@ -28,7 +28,6 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 	const handleCurrentLocationClick = () => {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition((position) => {
-				console.log('position:', position);
 				let lat = position.coords.latitude;
 				let lon = position.coords.longitude;
 
