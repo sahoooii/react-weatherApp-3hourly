@@ -14,10 +14,11 @@ const formatToLocalTime = (
 
 // Get timezone from city and then format date and temp
 const formatForecastWeather = (data) => {
+	console.log('forecastData:', data);
+
 	const { city } = data;
 	const {
 		timezone,
-		// coord: { lat, lon },
 	} = city;
 
 	// timezone / 60 for change min

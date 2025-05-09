@@ -1,15 +1,18 @@
 // infoType= weather ? forecast
 //searchParams= cityName ? lat ? lod
-const getWeatherData = (infoType, searchParams) => {
+const getWeatherData = async (infoType, searchParams) => {
 	// const url = new URL(BASE_URL + '/' + infoType);
-	const url = new URL(`http://localhost:5000/api/weather`);
+	const url = new URL(`http://localhost:5000/api/${infoType}`);
 	url.search = new URLSearchParams({ ...searchParams });
 	// url.search = new URLSearchParams({ ...searchParams, appid: API_KEY });
 
-	return fetch(url).then((res) => res.json());
+	const res = await fetch(url);
+	return await res.json();
 };
 
 const formatCurrentWeather = (data) => {
+	console.log('data:', data);
+
 	const {
 		coord: { lat, lon },
 		main: { temp, feels_like, temp_min, temp_max, humidity },
@@ -19,7 +22,6 @@ const formatCurrentWeather = (data) => {
 		weather,
 		wind: { speed },
 	} = data;
-	console.log('lat:', lat);
 
 	const { main: details_weather, icon } = weather[0];
 
@@ -49,6 +51,7 @@ const getFormattedCurrentWeather = async (searchParams) => {
 			'weather',
 			searchParams
 		).then(formatCurrentWeather);
+		console.log('formattedCurrentWeather:', formattedCurrentWeather);
 
 		return formattedCurrentWeather;
 	} catch (error) {

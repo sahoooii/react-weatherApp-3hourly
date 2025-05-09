@@ -55,6 +55,8 @@ function App() {
 				units,
 			}).then((forecastData) => {
 				const { timezoneInMinutes, threeHourly } = forecastData;
+				console.log('forecastData:', forecastData);
+
 				const currentWeatherAndTimeZone = {
 					...currentWeather,
 					timezoneInMinutes,
