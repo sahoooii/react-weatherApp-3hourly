@@ -1,5 +1,4 @@
 import express from 'express';
-import axios from 'axios';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import {
@@ -17,7 +16,6 @@ app.use(cors());
 app.get('/api/weather', async (req, res) => {
 	try {
 		const params = buildWeatherQueryParams(req.query);
-
 		const response = await fetchWeatherFromAPI('weather', params);
 
 		res.json(response.data);
@@ -30,10 +28,7 @@ app.get('/api/weather', async (req, res) => {
 // Get 3 hourly weather data
 app.get('/api/forecast', async (req, res) => {
 	try {
-		const { lat, lon, q, units } = req.query;
-
 		const params = buildWeatherQueryParams(req.query);
-
 		const response = await fetchWeatherFromAPI('forecast', params);
 
 		res.json(response.data);
