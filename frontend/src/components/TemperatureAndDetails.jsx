@@ -8,10 +8,7 @@ import {
 	UilArrowCircleUp,
 	UilArrowCircleDown,
 } from '@iconscout/react-unicons';
-import {
-	formatToLocalTime,
-	iconUrlFromCode,
-} from 'services/ForecastService';
+import { formatToLocalTime, iconUrlFromCode } from 'services/ForecastService';
 
 export const TemperatureAndDetails = ({
 	weather: {
@@ -51,7 +48,7 @@ export const TemperatureAndDetails = ({
 					}`}</p>
 				</div>
 
-				<div className='md:flex md:flex-col space-y-2 mb-1 md:items-start'>
+				<div className='md:flex md:flex-col space-y-2 mb-2 md:items-start'>
 					<div className={`${weatherInfo}`}>
 						<UilTemperature size={18} className='mr-1' />
 						Real feel:

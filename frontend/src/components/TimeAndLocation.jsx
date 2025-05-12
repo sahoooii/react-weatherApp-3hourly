@@ -8,7 +8,7 @@ const TimeAndLocation = ({
 		<div>
 			<div className='flex items-center justify-center my-6'>
 				<p className='text-white text-base md:text-xl font-extralight'>
-					{/* Wednesday, 31 May 2024 | Local time 12: 45 PM */}
+					{/* Format: Wednesday, 31 May 2024 | Local time 12: 45 PM */}
 					{formatToLocalTime(dt, timezoneInMinutes)}
 				</p>
 			</div>

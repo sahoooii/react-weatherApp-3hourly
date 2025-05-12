@@ -12,7 +12,7 @@ const Forecast = ({ threeHourlyWeather }) => {
 				{threeHourlyWeather.map((weather) => (
 					<div
 						className='flex flex-col items-center text-center text-sm md:text-base'
-						key={weather.id}
+						key={`${weather.id}-${weather.temp}`}
 					>
 						<p className='font-light'>{weather.dateTime}</p>
 						<img

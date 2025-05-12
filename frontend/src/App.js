@@ -34,7 +34,6 @@ function App() {
 			setIsLoading(false);
 		} else {
 			setShowMessage(false);
-			// setIsLoading(true);
 		}
 	};
 
@@ -47,24 +46,29 @@ function App() {
 				units,
 			});
 
+			// Handle search result and show message if not find the city
 			await searchResult(currentWeather);
 
-			//3hourly weather
-			await getFormattedThreeHourlyWeather({
-				...query,
-				units,
-			}).then((forecastData) => {
+			try {
+				// Get 3-hourly forecast weather
+				const forecastData = await getFormattedThreeHourlyWeather({
+					...query,
+					units,
+				});
+
 				const { timezoneInMinutes, threeHourly } = forecastData;
 
+				// Combine current weather and timezone
 				const currentWeatherAndTimeZone = {
 					...currentWeather,
 					timezoneInMinutes,
 				};
 
+				// Update state
 				setWeather(currentWeatherAndTimeZone);
 				setThreeHourlyWeather(threeHourly);
 
-				//BgColor change
+				// Change background color based on temperature
 				const range = units === 'metric' ? 25 : 77;
 
 				if (currentWeather.temp <= range) {
@@ -72,16 +76,19 @@ function App() {
 				} else {
 					setBg(hotBg);
 				}
-
+			} catch (error) {
+				console.error('Error fetching weather data', error);
+			} finally {
 				setIsLoading(false);
-			});
+			}
 		};
+
 		fetchWeather();
 	}, [query, units]);
 
 	return (
 		<div
-			className={`mx-auto w-[100%] py-12 px-5 md:px-28 lg:px-32 bg-gradient-to-br min-h-[100vh] ${bg}`}
+			className={`mx-auto w-full py-12 px-5 md:px-28 lg:px-32 bg-gradient-to-br min-h-[100vh] ${bg}`}
 		>
 			<div className='xl:w-[85%] mx-auto'>
 				<TopButton setQuery={setQuery} />
@@ -89,10 +96,11 @@ function App() {
 			</div>
 
 			<div className='w-[95%] lg:w-[70%] mx-auto'>
+				{/* Show message, when not found the city */}
 				{showMessage && !isLoading ? (
 					<div className='text-center mt-20'>
 						<p className='text-2xl text-white'>
-							<span className='font-bold text-3xl'>{`"${query.q}"`}</span>{' '}
+							<span className='font-bold text-3xl'>{`"${query.q}"`}</span>
 							<span>is Not Found</span>
 						</p>
 					</div>
@@ -108,20 +116,6 @@ function App() {
 					</>
 				)}
 			</div>
-
-			{/* <div className='w-[95%] lg:w-[70%] mx-auto'>
-				{weather && !loading ? (
-					<>
-						<TimeAndLocation weather={weather} />
-						<TemperatureAndDetails weather={weather} units={units} />
-						<Forecast threeHourlyWeather={threeHourlyWeather} />
-					</>
-				) : (
-					<>
-						<Loading />
-					</>
-				)}
-			</div> */}
 		</div>
 	);
 }

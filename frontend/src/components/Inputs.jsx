@@ -36,7 +36,7 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 		}
 	};
 
-	// Handle Degree
+	// Handle Degree font style
 	const selectedDegree = 'text-3xl font-bold text-white';
 	const notSelectedDegree =
 		'text-xl text-white font-light transition ease-out hover:scale-125';
@@ -62,30 +62,31 @@ const Inputs = ({ setQuery, units, setUnits }) => {
 						onChange={(e) => setCity(e.currentTarget.value)}
 						type='text'
 						placeholder='Search for city...'
-						className='md:text-xl text-lg font-light xl:w-[400px] md:w-[320px] w-[250px] p-2 focus:outline-none shadow-xl capitalize rounded-md'
+						className='md:text-xl text-lg font-light xl:w-[400px] md:w-[320px] w-[220px] py-2 px-3 focus:outline-none shadow-xl capitalize rounded-md'
 					/>
 					<button className='absolute items-center top-0 bottom-0 right-3.5 text-gray-500'>
 						<MdOutlineClear size={18} onClick={() => setCity('')} />
 					</button>
 				</div>
+
 				<UilSearch
-					size={isAboveMediumScreens ? 24 : 20}
+					size={isAboveMediumScreens ? 28 : 24}
 					className={`${iconAnimation}`}
 					onClick={handleSearch}
 				/>
 				<UilLocationPoint
-					size={isAboveMediumScreens ? 24 : 20}
+					size={isAboveMediumScreens ? 28 : 24}
 					className={`${iconAnimation}`}
 					onClick={handleCurrentLocationClick}
 				/>
 				<UilEstate
-					size={isAboveMediumScreens ? 24 : 20}
+					size={isAboveMediumScreens ? 28 : 24}
 					className={`${iconAnimation}`}
 					onClick={() => setQuery({ q: 'tokyo' })}
 				/>
 			</form>
 
-			<div className='flex flex-row md:w-[20%] items-center xl:justify-start justify-center mx-auto mt-2 md:mt-0'>
+			<div className='flex flex-row md:w-[20%] items-center xl:justify-start justify-center mx-auto mt-4 md:mt-0'>
 				<button
 					name='metric'
 					className={` ${

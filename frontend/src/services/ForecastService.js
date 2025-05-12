@@ -1,50 +1,56 @@
 import { DateTime } from 'luxon';
 import { getWeatherData } from './WeatherService';
 
-// get Weather Icon
+// Get Weather Icon
 const iconUrlFromCode = (icon) =>
 	`http://openweathermap.org/img/wn/${icon}@2x.png`;
 
-//format to Wednesday, 28 Apr 2024 | Local time 12: 45 PM
+//Format to Wednesday, 28 Apr 2024 | Local time 12: 45 PM
 const formatToLocalTime = (
 	secs,
 	zone,
 	format = "cccc, dd MMM yyyy' | 'hh:mm a"
 ) => DateTime.fromSeconds(secs).setZone(zone).toFormat(format);
 
-// Get timezone from city and then format date and temp
-const formatForecastWeather = (data) => {
-	const { city } = data;
-	const { timezone } = city;
+const formatDetailsToWeather = (details, timezoneInMinutes, index) => {
+	const dtToDate = details.dt;
+	return {
+		id: index,
+		date: formatToLocalTime(dtToDate, timezoneInMinutes, 'dd MMM yyyy'),
+		dateTime: formatToLocalTime(dtToDate, timezoneInMinutes, 'hh:mm a'),
+		dayIcon: iconUrlFromCode(details.weather[0].icon),
+		temp: details.main.temp,
+	};
+};
 
-	// timezone / 60 for change min
+// Get timezone from city and then format it
+const formatForecastWeather = (data) => {
+	const {
+		city: { timezone },
+	} = data;
+
+	// timezone / 60 = change to min
 	const timezoneInMinutes = timezone / 60;
 
-	// Get five data after current time
-	let threeHourly = data.list.slice(0, 5).map((details, i) => {
-		let dtToDate = details.dt;
-
-		return {
-			id: i,
-			date: formatToLocalTime(dtToDate, timezoneInMinutes, 'dd MMM yyyy'),
-			dateTime: formatToLocalTime(dtToDate, timezoneInMinutes, 'hh:mm a'),
-			dayIcon: iconUrlFromCode(details.weather[0].icon),
-			temp: details.main.temp,
-		};
-	});
+	// Get five weather forecasts for every three hours, excluding the current time
+	const threeHourly = data.list
+		.slice(0, 5)
+		.map((details, index) =>
+			formatDetailsToWeather(details, timezoneInMinutes, index)
+		);
 
 	return { threeHourly, timezoneInMinutes };
 };
 
 const getFormattedThreeHourlyWeather = async (searchParams) => {
 	try {
-		// Get  timezoneInMinutes, threeHourly
+		// Get timezoneInMinutes, threeHourly
 		let formattedThreeHourlyForecast = await getWeatherData(
 			'forecast',
 			searchParams
-		).then(formatForecastWeather);
+		);
 
-		return formattedThreeHourlyForecast;
+		return formatForecastWeather(formattedThreeHourlyForecast);
 	} catch (error) {
 		console.log(error.message);
 	}
