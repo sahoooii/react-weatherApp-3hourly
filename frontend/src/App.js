@@ -41,20 +41,15 @@ function App() {
 		const fetchWeather = async () => {
 			setIsLoading(true);
 
-			const currentWeather = await getFormattedCurrentWeather({
-				...query,
-				units,
-			});
-
-			// Handle search result and show message if not find the city
-			await searchResult(currentWeather);
-
 			try {
-				// Get 3-hourly forecast weather
-				const forecastData = await getFormattedThreeHourlyWeather({
-					...query,
-					units,
-				});
+				const [currentWeather, forecastData] = await Promise.all([
+					// Get current weather
+					getFormattedCurrentWeather({ ...query, units }),
+					// Get 3-hourly forecast weather
+					getFormattedThreeHourlyWeather({ ...query, units }),
+				]);
+				// Handle search result and show message if not find the city
+				await searchResult(currentWeather);
 
 				const { timezoneInMinutes, threeHourly } = forecastData;
 
