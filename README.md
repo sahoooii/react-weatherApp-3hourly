@@ -1,14 +1,17 @@
 # react-weatherApp-3hourly
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Node.js](https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=ff0)
-![Express](https://img.shields.io/badge/Express-000?style=for-the-badge&logo=express&logoColor=ff0)
-![Axios](https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+## 🛠 Tech Stack
 
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![React](https://img.shields.io/badge/React@18.2.0-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Axios](https://img.shields.io/badge/axios@1.9.0-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![Node.js](https://img.shields.io/badge/node.js@20.11.1-339933?style=for-the-badge&logo=node.js&logoColor=ff0)
+![Express](https://img.shields.io/badge/Express@5.1.0-000?style=for-the-badge&logo=express&logoColor=ff0)
+<br />
+![Tailwind CSS](https://img.shields.io/badge/TailwindCSS@3.2.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Motion](https://img.shields.io/badge/Motion-0055ff?style=for-the-badge&logo=framer&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion@11.1.0-0055ff?style=for-the-badge&logo=framer&logoColor=white)
 ![Open Weather MAP](https://img.shields.io/badge/Open_Weather_Map-FF6600?style=for-the-badge&logo=open_weather_map&logoColor=white)
-![Luxon](https://img.shields.io/badge/Luxon-69639A?style=for-the-badge&logo=luxon&logoColor=white)
+![Luxon](https://img.shields.io/badge/Luxon@3.1.1-69639A?style=for-the-badge&logo=luxon&logoColor=white)
 
 <p>etc...</p>
 
