@@ -8,7 +8,6 @@
 ![Express](https://img.shields.io/badge/Express@5.1.0-000?style=for-the-badge&logo=express&logoColor=ff0)
 <br />
 ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS@3.2.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Motion](https://img.shields.io/badge/Motion-0055ff?style=for-the-badge&logo=framer&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion@11.1.0-0055ff?style=for-the-badge&logo=framer&logoColor=white)
 ![Open Weather MAP](https://img.shields.io/badge/Open_Weather_Map-FF6600?style=for-the-badge&logo=open_weather_map&logoColor=white)
 ![Luxon](https://img.shields.io/badge/Luxon@3.1.1-69639A?style=for-the-badge&logo=luxon&logoColor=white)
