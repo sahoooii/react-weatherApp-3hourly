@@ -5,12 +5,20 @@ import {
 	buildWeatherQueryParams,
 	fetchWeatherFromAPI,
 } from './utils/weatherRequest.js';
+import helmet from 'helmet';
 
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// security middleware
+app.use(helmet());
+// CORS
 app.use(cors());
+
+// JSON parser
+app.use(express.json());
 
 // Get current weather data
 app.get('/api/weather', async (req, res) => {
