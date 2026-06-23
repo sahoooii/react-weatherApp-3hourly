@@ -3,12 +3,10 @@
 	"private": true,
 	"scripts": {
 		"dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix weather-api-proxy\"",
-		"start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix weather-api-proxy\""
+		"start": "concurrently \"npm run start --prefix frontend\" \"npm run start --prefix weather-api-proxy\"",
+		"build": "npm run build --prefix frontend"
 	},
 	"devDependencies": {
 		"concurrently": "^8.2.2"
-	},
-	"dependencies": {
-		"helmet": "^8.1.0"
 	}
 }
