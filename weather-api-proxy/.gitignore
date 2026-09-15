@@ -6,3 +6,5 @@ node_modules/
 
 # その他
 .DS_Store
+
+/build
